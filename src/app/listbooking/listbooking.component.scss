@@ -1,0 +1,104 @@
+/* ตั้งค่าพื้นฐาน */
+body {
+    font-family: 'Prompt', sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.booking-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+    overflow: hidden;
+    margin: 10px auto;
+}
+
+.booking-image img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-right: 1px solid #eee;
+}
+
+.booking-details {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.booking-details h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+}
+
+.booking-details p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 16px;
+}
+
+.booking-details p i {
+    margin-right: 8px;
+    color: #007BFF;
+}
+
+.cancel-btn {
+    background-color: #d9534f;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-btn i {
+    margin-right: 5px;
+}
+
+.cancel-btn:hover {
+    background-color: #c9302c;
+}
+
+@media (max-width: 600px) {
+    .booking-card {
+        flex-direction: column;
+        max-width: 90%;
+    }
+
+    .booking-image img {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .booking-details {
+        padding: 15px;
+    }
+
+    .booking-details h3 {
+        font-size: 18px;
+    }
+
+    .booking-details p {
+        font-size: 14px;
+    }
+
+    .cancel-btn {
+        padding: 8px 12px;
+    }
+}

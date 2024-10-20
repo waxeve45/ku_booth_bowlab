@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="login-form">
+        <h1>Login</h1>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Please enter your email" required #email>
+         
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Please enter your password" required  #password>
+
+        <button (click)="login(email.value, password.value)"  class="btn-login">Login</button>
+        <p class="register-link"><a routerLink="/register">Register</a></p>
+    </div>
+</div>

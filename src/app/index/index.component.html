@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>โซนต่างๆ</h1>
+    <main>
+      <section class="zone-list">
+        <div *ngFor="let zone of zones" class="zone-card">
+          <a [routerLink]="['/ShowGeneralZone', zone.zoneID]" class="zone-link">
+            <img src="../../assets/theater.png" alt="Zone Image" class="zone-image">
+            <div class="zone-info">
+              <h3>ชื่อโซน: {{ zone.zoneName }}</h3>
+              <p>จำนวนบูธในโซน: <span class="zone-detail">{{ zone.Number_of_booths }}</span></p>
+              <p>รหัสโซน: <span class="zone-detail">{{ zone.zoneID }}</span></p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+  
