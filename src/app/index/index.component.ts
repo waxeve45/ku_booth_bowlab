@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [RouterLink, HttpClientModule, CommonModule],  
+  imports: [RouterLink, HttpClientModule, CommonModule,],  
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
