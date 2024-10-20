@@ -1,4 +1,3 @@
-
     <nav class="navbar">
         <div class="navbar-left">
             <a routerLink="/" class="logo">
@@ -12,7 +11,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <img src="../../assets/profile.png" alt="User Icon" class="nav-icon">
-                    <span class="nav-text">Username</span>
+                    <span class="nav-text">{{email}}</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -27,12 +26,23 @@
                     <span class="nav-text">รายการจอง</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <ng-container *ngIf="!email">
+                <li class="nav-item">
                 <a routerLink="/login" class="nav-link">
+                    <img src="../../assets/logout.png" alt="Logout Icon" class="nav-icon">
+                    <span class="nav-text">เข้าสู่ระบบ</span>
+                </a>
+            </li>
+        </ng-container>
+
+
+            <ng-container *ngIf="email">
+                <li class="nav-item">
+                <a (click)="logout()" class="nav-link">
                     <img src="../../assets/logout.png" alt="Logout Icon" class="nav-icon">
                     <span class="nav-text">ล็อคเอาท์</span>
                 </a>
             </li>
+        </ng-container>
         </ul>
     </nav>
-

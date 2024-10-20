@@ -33,7 +33,39 @@ export class LoginComponent {
     
     this.http.post(this.dataService.apiEndpoint+ '/login', loginData).subscribe((response: any) => {
       console.log("login success");
+
+      sessionStorage.setItem('isLoggedin', 'true');
+      sessionStorage.setItem('userData', JSON.stringify(response.user));
+
+      const userData = sessionStorage.getItem('userData');
+      console.log(userData);
       
+
+      Swal.fire({
+        title: "เข้าสู่ระบบสำเร็จ",
+        text: "คุณทำการเข้าสู่ระบบสำเร็จ",
+        icon: "success"
+      }).then(()=>{
+        this.router.navigate(['']).then(()=>{
+          window.location.reload();
+        })
+      });
+      // sessionStorage.setItem('isLoggedin', 'true');
+      // sessionStorage.setItem('userData',JSON.stringify(response.user));
+
+      // const userData = sessionStorage.getItem('userData');
+      // console.log(userData);
+      
+      // this.router.navigate(['']).then(() => {
+      //   window.location.reload();
+      // })
+    },(error) => {
+      console.log(error);
+      Swal.fire({
+        title: "เข้าสู่ระบบไม่สำเร็จ",
+        text: "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+        icon: "error"
+      });
     });
 
   }

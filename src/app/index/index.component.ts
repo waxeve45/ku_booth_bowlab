@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataService } from '../../data.service';
 import { Zone } from '../model/zonemodel/zone.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-index',
@@ -12,10 +13,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
+export class IndexComponent implements OnInit {
 
-export class IndexComponent  {
+  //ประกาศตัวแปรเพื่อเก็บข้อมูล
   zones: Zone[] = [];
+  
 
+  //ประกาศ construnctor 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -23,14 +27,51 @@ export class IndexComponent  {
     private router: Router,
   ) {}
 
+  //การทำงาน เพื่อเปิดหน้าเว็บแอปพลิเคชัน เรียกใช้ฟังก์ชันที่อยู่ใน ngOnit 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      console.log(params); 
-      this.dataService.getZones(params).subscribe(
-        (data) => {
-          this.zones = data;
-        }
-      );
-    });
+    this.getAllZone();
   }
+
+  // function เรียกข้อมูลโซนทั้งหมด
+  getAllZone(){
+    this.http.get(this.dataService.apiEndpoint + '/ShowGeneralZone').subscribe((response: any) => {
+      this.zones = response;
+    })
+  }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,23 +9,14 @@ import { Router } from '@angular/router';
 })
 export class DataService {
 
+  private userData:any;
+  
+
   apiEndpoint = "http://localhost/api_booth_csc";
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private dataService: DataService
-  ) {}
+    // getUserData(){
+    // return this.userData;
+    // }
 
-  getZones(queryParams: any): Observable<Zone[]> {
-    let params = new HttpParams();
-
-    for (const key in queryParams) {
-      if (queryParams.hasOwnProperty(key)) {
-        params = params.append(key, queryParams[key]);
-      }
-    }
-    return this.http.get<Zone[]>(this.dataService.apiEndpoint+'/ShowGeneralZone', { params });
-  }
 }
 
