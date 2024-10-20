@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent {
 
     email: string = '';
+    fname: string = '';
+    lname: string = '';
   // email: string = '';
 
 constructor(
@@ -28,6 +30,8 @@ ngOnInit(){
   if(userData){
     const user = JSON.parse(userData);
     this.email = user.email;
+    this.fname = user.fname;
+    this.lname = user.lname;
     console.log(user);
     
   }

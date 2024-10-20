@@ -1,147 +1,156 @@
-/* จัดหน้าให้ทุกอย่างอยู่ตรงกลาง */
+/* จัดหน้าให้เรียบง่ายและดูดี */
 body {
     font-family: 'Kanit', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f6f9;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    box-sizing: border-box;
-  }
-  .allcontent{
+    position: relative;
+}
+
+/* กล่องข้อมูลบูธ */
+.content-wrapper {
+  background-color: white;
+  border-radius: 20px;
+  width: 122%;
+  max-width: 1127px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-right: 20px;
+  height: auto;
+  margin-top: 10px;
+}
+
+.booth-container {
     display: flex;
-    width: 50%;
-    justify-content: center;
-    margin: auto;
-  }
-  /* ปรับขนาดของคอนเทนเนอร์ */
-  .main-container {
-    display: flex;
-    width: 800px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 20px; /* เพิ่ม margin เพื่อป้องกันการติดขอบ */
-  }
-  
-  .booth-info {
-    flex: 1;
-    background-color: #f8f9fc;
-    padding: 30px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.booth-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px solid #e0e0e0;
-  }
-  
-  .booth-image {
+    justify-content: center;
+    text-align: center;
+    background-color: #f8f9fc;
+    padding: 20px;
     border-radius: 10px;
+    width: 48%;
+}
+
+.booth-image {
+    width: 150px;
+    height: 150px;
     margin-bottom: 15px;
-    width: 100%;
-    max-width: 200px;
-  }
-  
-  .booth-details h2 {
-    margin: 0 0 10px;
-    font-weight: 500;
-  }
-  
-  .booth-details p {
+    border-radius: 10px;
+}
+
+.booth-details h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+}
+
+.booth-details p {
     margin: 5px 0;
     color: #555;
     font-size: 16px;
-  }
-  
-  /* จัดกล่องการชำระเงิน */
-  .payment-section {
-    flex: 1;
-    padding: 30px;
+}
+
+/* กล่องการชำระเงินติดขอบขวา */
+.payment-section {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 25%;
+    max-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* เพิ่มช่องว่างระหว่างองค์ประกอบ */
-  }
-  
-  .qr-container img {
+    text-align: center;
+    margin-top: 85px;
+}
+
+.qr-container img {
     width: 200px;
     height: 200px;
-    margin: 15px 0;
+    margin: 20px 0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .upload-btn {
+}
+
+.upload-btn {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
-    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
+    cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .upload-btn:hover {
+}
+
+.upload-btn:hover {
     background-color: #0056b3;
-  }
-  
-  .payment-info {
-    text-align: center;
+}
+
+.payment-info {
     font-size: 14px;
     color: #777;
-  }
-  
-  .bank-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-  
-  .total-amount {
+}
+
+.total-amount {
     font-size: 18px;
     color: #333;
-  }
-  
-  /* ปรับให้มีแค่ปุ่มเลือกไฟล์เดียว */
-  .upload-slip {
+    margin-top: 20px;
+}
+
+.upload-slip {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-  }
-  
-  .custom-file-upload {
+    margin-bottom: 20px;
+}
+
+.custom-file-upload {
     background-color: #17a2b8;
     color: white;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .custom-file-upload:hover {
+}
+
+.custom-file-upload:hover {
     background-color: #138496;
-  }
-  
-  #file-upload {
-    display: none; /* ซ่อน input ไฟล์ */
-  }
-  
-  .confirm-btn {
+}
+
+#file-upload {
+    display: none;
+}
+
+.confirm-btn {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 12px 20px;
     width: 100%;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .confirm-btn:hover {
+}
+
+.confirm-btn:hover {
     background-color: #218838;
-  }
-  
+}
