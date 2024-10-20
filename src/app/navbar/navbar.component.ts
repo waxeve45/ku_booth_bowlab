@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent {
 
     email: string = '';
+    prefix: string = '';
     fname: string = '';
     lname: string = '';
   // email: string = '';
@@ -32,16 +33,10 @@ ngOnInit(){
     this.email = user.email;
     this.fname = user.fname;
     this.lname = user.lname;
+    this.prefix = user.prefix;
     console.log(user);
     
   }
-  // const userData = sessionStorage.getItem('userData');
-  // if(userData){
-  //   const user = JSON.parse(userData);
-  //   this.email = user.email;
-  //   console.log(user);
-    
-  // }
 }
 
  logout(){
@@ -51,12 +46,6 @@ ngOnInit(){
     window.location.reload();
   })
  }
-// logout(){
-//   sessionStorage.removeItem('isLoggedin');
-//   sessionStorage.removeItem('userData');
-//   this.route.navigate(['']).then(() => {
-//     window.location.reload();
-//   })
-// }
+
 
 }

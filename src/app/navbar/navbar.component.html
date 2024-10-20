@@ -14,7 +14,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <img src="../../assets/profile.png" alt="User Icon" class="nav-icon">
-                    <span class="nav-text">{{fname}} {{lname}}</span>
+                    <span class="nav-text">{{prefix}}{{fname}} {{lname}}</span>
                 </a>
             </li>
         </ng-container>
@@ -37,7 +37,7 @@
             <ng-container *ngIf="!email">
                 <li class="nav-item">
                 <a routerLink="/login" class="nav-link">
-                    <img src="../../assets/logout.png" alt="Logout Icon" class="nav-icon">
+                    <img src="../../assets/permission.png" alt="Logout Icon" class="nav-icon">
                     <span class="nav-text">เข้าสู่ระบบ</span>
                 </a>
             </li>
