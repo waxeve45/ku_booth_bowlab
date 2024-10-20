@@ -1,0 +1,50 @@
+<div class="navbar">
+    <a routerLink="/dashboard">ภาพรวม</a>
+    <a routerLink="/work">การจัดงาน</a>
+    <a routerLink="/zonemanage">จัดการโซน</a>
+    <a routerLink="/boothmanage">จัดการบูธ</a>
+    <a routerLink="/membermanage">จัดการสมาชิก</a>
+    <a routerLink="/bookingreport">รายงานผลการจอง</a>
+    <a routerLink="/approval">อนุมัติการจอง</a>
+    <a routerLink="/">ออกจากระบบ</a>
+</div>
+
+<h2>จัดการการจัดงาน</h2>
+
+<table>
+    <tr>
+        <th>รหัสการจัดงาน</th>
+        <th>ชื่องาน</th>
+        <th>วันที่เริ่มงาน</th>
+        <th>วันที่จบงาน</th>
+        <th>แก้ไข/ลบ</th>
+    </tr>
+    <tr>
+        <td>EVT001</td>
+        <td>งานเกษตรแฟร์ 2024</td>
+        <td>1 มีนาคม 2024</td>
+        <td>5 มีนาคม 2024</td>
+        <td>
+            <button>แก้ไข</button>
+            <button>ลบ</button>
+        </td>
+    </tr>
+    <!-- รายการงานเพิ่มเติม -->
+</table>
+
+<h3>เพิ่มงานใหม่</h3>
+<form>
+    <label for="eventCode">รหัสการจัดงาน:</label><br>
+    <input type="text" id="eventCode" name="eventCode" placeholder="รหัสการจัดงาน"><br>
+
+    <label for="eventName">ชื่องาน:</label><br>
+    <input type="text" id="eventName" name="eventName" placeholder="ชื่องาน"><br>
+
+    <label for="eventStartDate">วันที่เริ่มงาน:</label><br>
+    <input type="date" id="eventStartDate" name="eventStartDate"><br>
+
+    <label for="eventEndDate">วันที่จบงาน:</label><br>
+    <input type="date" id="eventEndDate" name="eventEndDate"><br>
+
+    <button type="submit">เพิ่มงาน</button>
+</form>

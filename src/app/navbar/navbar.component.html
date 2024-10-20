@@ -7,25 +7,33 @@
                 ระบบจองบูธงานเกษตรแฟร์
             </a>
         </div>
+
+        
         <ul class="nav-links">
+            <ng-container *ngIf="email">
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <img src="../../assets/profile.png" alt="User Icon" class="nav-icon">
                     <span class="nav-text">{{email}}</span>
                 </a>
             </li>
+        </ng-container>
+        <ng-container *ngIf="email">
             <li class="nav-item">
                 <a routerLink="/EditProfile" routerLinkActive="router-link-active"  class="nav-link">
                     <img src="../../assets/edit.png" alt="Edit Icon" class="nav-icon">
                     <span class="nav-text">แก้ไขข้อมูลส่วนตัว</span>
                 </a>
             </li>
+        </ng-container>
+        <ng-container *ngIf="email">
             <li class="nav-item">
                 <a routerLink="/listbooking" class="nav-link">
                     <img src="../../assets/checklist.png" alt="Booking Icon" class="nav-icon">
                     <span class="nav-text">รายการจอง</span>
                 </a>
             </li>
+            </ng-container>
             <ng-container *ngIf="!email">
                 <li class="nav-item">
                 <a routerLink="/login" class="nav-link">

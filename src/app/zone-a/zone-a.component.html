@@ -2,15 +2,16 @@
     <h1>บูธต่างๆ</h1>
     <main>
         <section class="zone-list">
+          <ng-container *ngFor="let booth of booth">
             <div class="zone-card">
                 <a href="booking.php?zone=1" class="zone-link">
                     <img src="../../assets/theater.png" alt="Zone A Image" class="zone-image">
                     <div class="zone-info">
-                        <h3>บูธ 1</h3>
-                        <p>ชื่อบูธ: <span class="zone-detail">1</span></p>
-                        <p>ขนาดบูธ: <span class="zone-detail">10x10</span></p>
-                        <p>สถานะบูธ: <span class="zone-detail">ว่าง</span></p>
-                        <p>ราคา: <span class="zone-detail">200 บาท</span></p>
+                        <h3>บูธ {{ booth.boothID}}</h3>
+                        <p>ชื่อบูธ: <span class="zone-detail">{{booth.boothName}}</span></p>
+                        <p>ขนาดบูธ: <span class="zone-detail">{{booth.boothSize}}</span></p>
+                        <p>สถานะบูธ: <span class="zone-detail">{{booth.boothStatus}}</span></p>
+                        <p>ราคา: <span class="zone-detail">{{booth.boothPrice}}</span></p>
                     </div>
                     <div class="checkbox-wrapper-31">
                         <input type="checkbox" class="zone-checkbox"/>
@@ -22,11 +23,12 @@
                     </div>
                 </a>
             </div>
+          </ng-container>
         </section>
     </main>
 </div>
 
-<button routerLink="/login">
+<button routerLink="/reservation">
     <div class="svg-wrapper-1">
       <div class="svg-wrapper">
         <svg

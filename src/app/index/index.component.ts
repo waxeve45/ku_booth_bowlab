@@ -39,7 +39,14 @@ export class IndexComponent implements OnInit {
     })
   }
 
+InformationBooth(zoneID: string) {
+  const queryParams ={
+    zoneID: zoneID,
+  };
+  console.log(queryParams);
 
+  this.router.navigate(['/zoneA'], {queryParams});
+}
 }
 
 

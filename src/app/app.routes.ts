@@ -10,6 +10,14 @@ import { ZoneDComponent } from './zone-d/zone-d.component';
 import { ZoneEComponent } from './zone-e/zone-e.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ListbookingComponent } from './listbooking/listbooking.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { AdminzonemanageComponent } from './adminzonemanage/adminzonemanage.component';
+import { AdminboothmanageComponent } from './adminboothmanage/adminboothmanage.component';
+import { AdminapprovalComponent } from './adminapproval/adminapproval.component';
+import { AdminmembermanageComponent } from './adminmembermanage/adminmembermanage.component';
+import { AdminbookingreportComponent } from './adminbookingreport/adminbookingreport.component';
+import { AdminworkComponent } from './adminwork/adminwork.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -23,5 +31,16 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'EditProfile', component: EditProfileComponent },
     { path: 'listbooking', component: ListbookingComponent },
+    { path: 'reservation', component: ReservationComponent },
+
+    // admin
+    { path: 'dashboard', component: AdmindashboardComponent },
+    { path: 'boothmanage', component: AdminboothmanageComponent },
+    { path: 'zonemanage', component: AdminzonemanageComponent },
+    { path: 'approval', component: AdminapprovalComponent },
+    { path: 'membermanage', component: AdminmembermanageComponent },
+    { path: 'bookingreport', component: AdminbookingreportComponent },
+    { path: 'work', component: AdminworkComponent },
+
     
 ];

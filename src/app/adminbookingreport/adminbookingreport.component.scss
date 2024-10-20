@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9;
+    padding: 20px;
+}
+.navbar {
+    background-color: #009c98;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+h2 {
+    color: #009c98;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #009c98;
+    color: white;
+}
+.status-paid {
+    background-color: #c8e6c9; /* สีเขียวอ่อนสำหรับสถานะชำระเงินแล้ว */
+}
+.status-pending {
+    background-color: #ffcc80; /* สีส้มอ่อนสำหรับสถานะรอการชำระเงิน */
+}
+.status-unpaid {
+    background-color: #ffcdd2; /* สีแดงอ่อนสำหรับสถานะยังไม่ชำระเงิน */
+}

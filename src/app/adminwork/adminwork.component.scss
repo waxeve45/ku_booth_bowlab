@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9;
+    padding: 20px;
+}
+.navbar {
+    background-color: #009c98;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+h2 {
+    color: #009c98;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #009c98;
+    color: white;
+}
+button {
+    background-color: #009c98;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #009c98;
+}
+input[type="text"], input[type="date"], textarea {
+    width: 97%; /* ปรับขนาดให้พอดี */
+    padding: 10px; /* เพิ่มระยะห่างภายใน */
+    margin: 10px 0; /* ระยะห่างระหว่างช่องกรอก */
+    border: 1px solid #ccc; /* เส้นขอบสีเทาอ่อน */
+    border-radius: 4px; /* มุมโค้งมน */
+    box-sizing: border-box; /* รวม padding ในความกว้าง */
+}
+
+textarea {
+    resize: vertical; /* อนุญาตให้ปรับขนาดเฉพาะแนวตั้ง */
+}
+
+button[type="submit"] {
+    background-color: #009c98; /* สีพื้นหลัง */
+    color: white; /* สีข้อความ */
+    padding: 10px; /* ระยะห่างภายใน */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 5px; /* มุมโค้งมน */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็น pointer */
+    transition: background-color 0.3s; /* เพิ่มเอฟเฟกต์เปลี่ยนสี */
+    width: 97%; /* ปรับให้เต็มความกว้าง */
+    margin-top: 10px; /* ระยะห่างด้านบน */
+}
+
+button[type="submit"]:hover {
+    background-color: #007b75; /* สีเมื่อ hover */
+}

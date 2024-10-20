@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f8e9; 
+}
+.navbar {
+    background-color: #009c98;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+.container {
+    padding: 20px;
+}
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.card h3 {
+    color: #009c98;
+}
+.button {
+    background-color: #009c98;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    width: 150px;
+    margin: 10px auto;
+}
+.button:hover {
+    background-color: #009c98;
+}

@@ -1,0 +1,45 @@
+
+<div class="navbar">
+    <a routerLink="/dashboard">ภาพรวม</a>
+    <a routerLink="/work">การจัดงาน</a>
+    <a routerLink="/zonemanage">จัดการโซน</a>
+    <a routerLink="/boothmanage">จัดการบูธ</a>
+    <a routerLink="/membermanage">จัดการสมาชิก</a>
+    <a routerLink="/bookingreport">รายงานผลการจอง</a>
+    <a routerLink="/approval">อนุมัติการจอง</a>
+    <a routerLink="/">ออกจากระบบ</a>
+</div>
+
+<h2>รายงานผลการจอง</h2>
+
+<table>
+    <tr>
+        <th>ชื่อ-นามสกุล</th>
+        <th>เบอร์โทร</th>
+        <th>ชื่อโซน</th>
+        <th>รหัสบูธ</th>
+        <th>สถานะการชำระเงิน</th>
+    </tr>
+    <tr class="status-unpaid">
+        <td>สมชาย ใจดี</td>
+        <td>0812345678</td>
+        <td>โซน A</td>
+        <td>B001</td>
+        <td>ยังไม่ชำระเงิน</td>
+    </tr>
+    <tr class="status-paid">
+        <td>สมหญิง ใจดี</td>
+        <td>0819876543</td>
+        <td>โซน B</td>
+        <td>B002</td>
+        <td>ชำระเงินแล้ว</td>
+    </tr>
+    <tr class="status-pending">
+        <td>สมปอง ใจเย็น</td>
+        <td>0896543210</td>
+        <td>โซน C</td>
+        <td>B003</td>
+        <td>รอการชำระเงิน</td>
+    </tr>
+    <!-- รายการการจองเพิ่มเติม -->
+</table>
