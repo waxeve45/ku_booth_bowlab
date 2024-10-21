@@ -1,33 +1,33 @@
 <div class="container">
     <h2>แก้ไขข้อมูลผู้ใช้</h2>
-    <form>
+        <ng-container *ngFor="let userId of user">
         <div class="form-group">
             <label for="title">คำนำหน้า</label>
             <select id="prefix" #prefix >
-              <option value="" disabled selected>เลือกคำนำหน้า</option>
+              <option value="{{userId.prefix}}" disabled selected>{{userId.prefix}}</option>
               <option value="นาย">นาย</option>
               <option value="นางสาว">นางสาว</option>
-              <option value="นาย">นาง</option>
+              <option value="นาง">นาง</option>
             </select>
           </div>
         <div class="form-group">
             <label for="fname">ชื่อ</label >
-            <input type="text" id="fname" name="fname" #fname>
+            <input type="text" id="fname" value="{{userId.fname}}" #fname>
         </div>
         <div class="form-group">
             <label for="lname">นามสกุล</label>
-            <input type="text" id="lname" name="lname" #lname>
+            <input type="text" id="lname" value="{{userId.lname}}" #lname>
         </div>
         <div class="form-group">
             <label for="email">อีเมล</label>
-            <input type="email" id="email" name="email" #email>
+            <input type="email" id="email" value="{{userId.email}}" #email>
         </div>
         <div class="form-group">
             <label for="phone">เบอร์โทร</label>
-            <input type="text" id="phone" name="phone" #phone>
+            <input type="text" id="phone" value="{{userId.phone}}" #phone>
         </div>
-        <button type="submit" class="btn">บันทึกการแก้ไข</button>
-    </form>
+        <button (click)="UpDateUser(prefix.value,fname.value,lname.value,phone.value,email.value)" class="btn">บันทึกการแก้ไข</button>
+        </ng-container> 
 
     <div class="change-password">
         <h3 routerLink="/Editpassword" >แก้ไขรหัสผ่าน</h3>
