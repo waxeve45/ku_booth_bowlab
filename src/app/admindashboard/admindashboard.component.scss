@@ -4,14 +4,57 @@ body {
 }
 .navbar {
     background-color: #009c98;
-    padding: 10px;
-    color: white;
-    text-align: center;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Kanit', sans-serif;
 }
+
 .navbar a {
     color: white;
-    margin: 0 15px;
+    margin: 0 10px;
     text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+    transition: color 0.3s, transform 0.3s;
+    position: relative;
+}
+
+/* Hover Effect: เปลี่ยนสีและขยายเล็กน้อย */
+.navbar a:hover {
+    color: #ffe082;
+    transform: scale(1.1);
+}
+
+/* Underline animation */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #ffe082;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* Responsive: ซ่อนเมนูบางส่วนเมื่อจอแคบ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .navbar a {
+        margin: 5px 0;
+    }
 }
 .container {
     padding: 20px;

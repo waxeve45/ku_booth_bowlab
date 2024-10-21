@@ -10,46 +10,57 @@
         <a routerLink="/">ออกจากระบบ</a>
     </div>
 
-    <h2>จัดการโซน</h2>
-    <table>
-        <tr>
-            <th>รหัสโซน</th>
-            <th>รหัสการจัดงาน</th>
-            <th>จำนวนบูธ</th>
-            <th>ชื่อโซน</th>
-            <th>แก้ไข/ลบ</th>
-        </tr>
-        <tr>
-            <td>Z001</td>
-            <td>1</td>
-            <td>10</td>
-            <td>โซนสำหรับสินค้าการเกษตร</td>
-            <td>
-                <button>แก้ไข</button>
-                <button>ลบ</button>
-            </td>
-        </tr>
-    </table>
+    <div class="content">
+        <div class="table-container">
+            <h2>จัดการโซน</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>รหัสโซน</th>
+                        <th>รหัสการจัดงาน</th>
+                        <th>จำนวนบูธ</th>
+                        <th>ชื่อโซน</th>
+                        <th>แก้ไข/ลบ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Z001</td>
+                        <td>1</td>
+                        <td>10</td>
+                        <td>โซนสำหรับสินค้าการเกษตร</td>
+                        <td>
+                            <button class="edit-btn">แก้ไข</button>
+                            <button class="delete-btn">ลบ</button>
+                        </td>
+                    </tr>
+                    <!-- เพิ่มข้อมูลเพิ่มเติมได้ที่นี่ -->
+                </tbody>
+            </table>
+        </div>
 
-    <h3>เพิ่มโซนใหม่</h3>
-    <form>
-        <label for="zoneCode">รหัสโซน:</label>
-        <input type="text" id="zoneCode" name="zoneCode" placeholder="รหัสโซน" required>
+        <div class="form-container">
+            <h3>เพิ่มโซนใหม่</h3>
+            <form>
+                <label for="zoneCode">รหัสโซน:</label>
+                <input type="text" id="zoneCode" name="zoneCode" placeholder="รหัสโซน" required>
 
-        <label for="eventCode">รหัสการจัดงาน:</label>
-        <select id="eventCode" name="eventCode" required>
-            <option value="" disabled selected>เลือกการจัดงาน</option>
-            <option value="EVT001">งาน1</option>
-            <option value="EVT002">งาน2</option>
-            <option value="EVT003">งาน3</option>
-        </select>
+                <label for="eventCode">รหัสการจัดงาน:</label>
+                <select id="eventCode" name="eventCode" required>
+                    <option value="" disabled selected>เลือกการจัดงาน</option>
+                    <option value="EVT001">งาน1</option>
+                    <option value="EVT002">งาน2</option>
+                    <option value="EVT003">งาน3</option>
+                </select>
 
-        <label for="boothAmount">จำนวนบูธ:</label>
-        <input type="number" id="boothAmount" name="boothAmount" placeholder="จำนวนบูธ" required>
+                <label for="boothAmount">จำนวนบูธ:</label>
+                <input type="number" id="boothAmount" name="boothAmount" placeholder="จำนวนบูธ" required>
 
-        <label for="zoneName">ชื่อโซน:</label>
-        <input type="text" id="zoneName" name="zoneName" placeholder="ชื่อโซน" required>
+                <label for="zoneName">ชื่อโซน:</label>
+                <input type="text" id="zoneName" name="zoneName" placeholder="ชื่อโซน" required>
 
-        <button type="submit" class="submit-btn">เพิ่มโซน</button>
-    </form>
+                <button type="submit" class="submit-btn">เพิ่มโซน</button>
+            </form>
+        </div>
+    </div>
 </div>

@@ -10,24 +10,31 @@
     <a routerLink="/">ออกจากระบบ</a>
 </div>
 
-<h2>อนุมัติการจอง</h2>
-<table>
-    <tr>
-        <th>ชื่อสมาชิก</th>
-        <th>ชื่อโซน</th>
-        <th>รหัสบูธ</th>
-        <th>สถานะการชำระเงิน</th>
-        <th>อนุมัติ/ปฏิเสธ</th>
-    </tr>
-    <tr>
-        <td>สมชาย ใจดี</td>
-        <td>โซน A</td>
-        <td>B001</td>
-        <td>รอตรวจสอบ</td>
-        <td>
-            <button>อนุมัติ</button>
-            <button>ปฏิเสธ</button>
-        </td>
-    </tr>
-    <!-- รายการการจองเพิ่มเติม -->
-</table>
+<div class="content">
+    <h2>อนุมัติการจอง</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ชื่อสมาชิก</th>
+                <th>ชื่อโซน</th>
+                <th>รหัสบูธ</th>
+                <th>สถานะการชำระเงิน</th>
+                <th>อนุมัติ/ปฏิเสธ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="status-pending">
+                <td>สมชาย ใจดี</td>
+                <td>โซน A</td>
+                <td>B001</td>
+                <td>รอตรวจสอบ</td>
+                <td>
+                    <button class="approve-btn">อนุมัติ</button>
+                    <button class="reject-btn">ปฏิเสธ</button>
+                </td>
+            </tr>
+            <!-- รายการการจองเพิ่มเติม -->
+        </tbody>
+    </table>
+</div>

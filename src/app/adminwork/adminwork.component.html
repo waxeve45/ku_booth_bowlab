@@ -9,42 +9,51 @@
     <a routerLink="/">ออกจากระบบ</a>
 </div>
 
-<h2>จัดการการจัดงาน</h2>
+<div class="content-container">
+    <div class="table-section">
+        <h2>จัดการการจัดงาน</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>รหัสการจัดงาน</th>
+                    <th>ชื่องาน</th>
+                    <th>วันที่เริ่มงาน</th>
+                    <th>วันที่จบงาน</th>
+                    <th>แก้ไข/ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>EVT001</td>
+                    <td>งานเกษตรแฟร์ 2024</td>
+                    <td>1 มีนาคม 2024</td>
+                    <td>5 มีนาคม 2024</td>
+                    <td>
+                        <button class="edit-btn">แก้ไข</button>
+                        <button class="delete-btn">ลบ</button>
+                    </td>
+                </tr>
+                <!-- รายการงานเพิ่มเติม -->
+            </tbody>
+        </table>
+    </div>
 
-<table>
-    <tr>
-        <th>รหัสการจัดงาน</th>
-        <th>ชื่องาน</th>
-        <th>วันที่เริ่มงาน</th>
-        <th>วันที่จบงาน</th>
-        <th>แก้ไข/ลบ</th>
-    </tr>
-    <tr>
-        <td>EVT001</td>
-        <td>งานเกษตรแฟร์ 2024</td>
-        <td>1 มีนาคม 2024</td>
-        <td>5 มีนาคม 2024</td>
-        <td>
-            <button>แก้ไข</button>
-            <button>ลบ</button>
-        </td>
-    </tr>
-    <!-- รายการงานเพิ่มเติม -->
-</table>
+    <div class="form-section">
+        <h3>เพิ่มงานใหม่</h3>
+        <form>
+            <label for="eventCode">รหัสการจัดงาน:</label>
+            <input type="text" id="eventCode" name="eventCode" placeholder="กรอกรหัสการจัดงาน">
 
-<h3>เพิ่มงานใหม่</h3>
-<form>
-    <label for="eventCode">รหัสการจัดงาน:</label><br>
-    <input type="text" id="eventCode" name="eventCode" placeholder="รหัสการจัดงาน"><br>
+            <label for="eventName">ชื่องาน:</label>
+            <input type="text" id="eventName" name="eventName" placeholder="กรอกชื่องาน">
 
-    <label for="eventName">ชื่องาน:</label><br>
-    <input type="text" id="eventName" name="eventName" placeholder="ชื่องาน"><br>
+            <label for="eventStartDate">วันที่เริ่มงาน:</label>
+            <input type="date" id="eventStartDate" name="eventStartDate">
 
-    <label for="eventStartDate">วันที่เริ่มงาน:</label><br>
-    <input type="date" id="eventStartDate" name="eventStartDate"><br>
+            <label for="eventEndDate">วันที่จบงาน:</label>
+            <input type="date" id="eventEndDate" name="eventEndDate">
 
-    <label for="eventEndDate">วันที่จบงาน:</label><br>
-    <input type="date" id="eventEndDate" name="eventEndDate"><br>
-
-    <button type="submit">เพิ่มงาน</button>
-</form>
+            <button type="submit">เพิ่มงาน</button>
+        </form>
+    </div>
+</div>

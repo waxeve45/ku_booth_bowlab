@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
-import { Booth } from '../model/zonemodel/booth.model';
+import { Booth } from '../model/boothmodel/booth.model';
 import { DataService } from '../../data.service';
 
 @Component({

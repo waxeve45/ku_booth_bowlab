@@ -11,22 +11,33 @@
     <a routerLink="/">ออกจากระบบ</a>
 </div>
 
-<h2>จัดการสมาชิก</h2>
-<table>
-    <tr>
-        <th>ชื่อ-นามสกุล</th>
-        <th>เบอร์โทร</th>
-        <th>อีเมล</th>
-        <th>แก้ไข/ลบ</th>
-    </tr>
-    <tr>
-        <td>สมชาย ใจดี</td>
-        <td>0812345678</td>
-        <td>somchai.example.com</td>
-        <td>
-            <button>แก้ไข</button>
-            <button>ลบ</button>
-        </td>
-    </tr>
-    <!-- รายการสมาชิกเพิ่มเติม -->
-</table>
+<div class="content">
+    <h2>จัดการสมาชิก</h2>    
+    <table>
+        <thead>
+            <tr>
+                <th>ชื่อ-นามสกุล</th>
+                <th>เบอร์โทร</th>
+                <th>อีเมล</th>
+                <th>แก้ไข/ลบ</th>
+            </tr>
+        </thead>
+    </table>
+        <tbody>
+            <ng-container *ngFor="let User of user">
+            <tr>
+                <td>{{User.prefix}}{{User.fname}} {{User.lname}}</td>
+                <td>{{User.phone}}</td>
+                <td>{{User.email}}</td>
+                <td>
+                    <button class="edit-btn">แก้ไข</button>
+                    <button class="delete-btn">ลบ</button>
+                </td>
+            </tr>
+            <!-- รายการสมาชิกเพิ่มเติม -->
+            </ng-container>
+        </tbody>
+
+
+</div>
+
