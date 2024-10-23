@@ -15,7 +15,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>รหัสการจัดงาน</th>
                     <th>ชื่องาน</th>
                     <th>วันที่เริ่มงาน</th>
                     <th>วันที่จบงาน</th>
@@ -23,17 +22,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>EVT001</td>
-                    <td>งานเกษตรแฟร์ 2024</td>
-                    <td>1 มีนาคม 2024</td>
-                    <td>5 มีนาคม 2024</td>
+                <tr *ngFor="let work of works">
+                    <td>{{ work.workName }}</td>
+                    <td>{{ work.work_date_Start | date: 'dd MMMM yyyy' }}</td>
+                    <td>{{ work.work_date_End | date: 'dd MMMM yyyy' }}</td>
                     <td>
-                        <button class="edit-btn">แก้ไข</button>
-                        <button class="delete-btn">ลบ</button>
+                        <button class="edit-btn" (click)="editWork(work)">แก้ไข</button>
+                        <button class="delete-btn" (click)="deleteWork(work.workCode)">ลบ</button>
                     </td>
                 </tr>
-                <!-- รายการงานเพิ่มเติม -->
             </tbody>
         </table>
     </div>

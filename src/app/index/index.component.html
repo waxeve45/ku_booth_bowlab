@@ -7,7 +7,7 @@
     <main>
       <section class="zone-list">
         <ng-container *ngFor="let zone of zones">
-        <div class="zone-card">
+        <div class="zone-card" (click)="InformationBooth(zone.zoneID)" >
           <a (click)="InformationBooth(zone.zoneID)" class="zone-link">
             <img src="../../assets/theater.png" alt="Zone Image" class="zone-image">
             <div class="zone-info">
