@@ -4,12 +4,19 @@
 //
 //   const work = Convert.toWork(json);
 
-export interface Work {
-workCode: any;
-    workName:        string;
-    work_date_Start: string;
-    work_date_End:   string;
-}
+// export interface Work {
+// workCode: any;
+//     workName:        string;
+//     work_date_Start: string;
+//     work_date_End:   string;
+// }
+export class Work {
+    workID!: string;
+    workCode!: string;
+    workName!: string;
+    work_date_Start!: string;
+    work_date_End!: string;
+  }
 
 // Converts JSON strings to/from your types
 export class Convert {

@@ -17,66 +17,61 @@
                 <tr>
                     <th>รหัสบูธ</th>
                     <th>ชื่อบูธ</th>
-                    <th>รหัสโซน</th>
-                    <th>สินค้า</th>
                     <th>ขนาด</th>
+                    <th>สินค้า</th>
                     <th>สถานะ</th>
                     <th>ราคา</th>
+                    <th>โซน</th>
                     <th>แก้ไข/ลบ</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>B001</td>
-                    <td>บูธ A</td>
-                    <td>A</td>
-                    <td>น้ำส้ม</td>
-                    <td>3x3</td>
-                    <td>ว่าง</td>
-                    <td>5000 บาท</td>
+                <tr *ngFor="let Booth of booths">
+                    <td>{{ Booth.boothID }}</td>
+                    <td>{{ Booth.boothName }}</td>
+                    <td>{{ Booth.boothSize }}</td>
+                    <td>{{ Booth.products_sold }}</td>
+                    <td>{{ Booth.boothStatus }}</td>
+                    <td>{{ Booth.boothPrice }}</td>
+                    <td>{{ Booth.zoneID }}</td>
                     <td>
-                        <button class="edit-btn">แก้ไข</button>
-                        <button class="delete-btn">ลบ</button>
+                        <button class="edit-btn" (click)="editBooth(Booth)">แก้ไข</button>
+                        <button class="delete-btn" (click)="deleteBooth(Booth.boothID)">ลบ</button>
                     </td>
                 </tr>
-                <!-- เพิ่มบูธเพิ่มเติมได้ที่นี่ -->
             </tbody>
         </table>
     </div>
 
     <div class="form-container">
-        <h3>เพิ่มบูธใหม่</h3>
-        <form>
-            <label for="boothCode">รหัสบูธ:</label>
-            <input type="text" id="boothCode" name="boothCode" placeholder="รหัสบูธ" required>
-
+        <h3>{{ newBooth.boothID ? 'แก้ไขบูธ' : 'เพิ่มบูธใหม่' }}</h3>
+        <form (ngSubmit)="addOrUpdateBooth()">
+            <label for="boothID">รหัสบูธ:</label>
+            <input type="text" id="boothID" [(ngModel)]="newBooth.boothID" name="boothID" required [disabled]="true">
+    
+            <label for="zoneID">รหัสโซน:</label>
+            <input type="text" id="zoneID" [(ngModel)]="newBooth.zoneID" name="zoneID" required>
+    
             <label for="boothName">ชื่อบูธ:</label>
-            <input type="text" id="boothName" name="boothName" placeholder="ชื่อบูธ" required>
-
-            <label for="zoneCode">รหัสโซน:</label>
-            <select id="zoneCode" name="zoneCode" required>
-                <option value="" disabled selected>เลือกโซน</option>
-                <option value="A">โซน A</option>
-                <option value="B">โซน B</option>
-                <option value="C">โซน C</option>
-            </select>
-
-            <label for="product">สินค้า:</label>
-            <input type="text" id="product" name="product" placeholder="สินค้า" required>
-
-            <label for="size">ขนาด:</label>
-            <input type="text" id="size" name="size" placeholder="ขนาด (เช่น 3x3)" required>
-
-            <label for="status">สถานะ:</label>
-            <select id="status" name="status" required>
-                <option value="available">ว่าง</option>
-                <option value="occupied">ไม่ว่าง</option>
-            </select>
-
-            <label for="price">ราคา:</label>
-            <input type="number" id="price" name="price" placeholder="ราคา" required>
-
-            <button type="submit" class="submit-btn">เพิ่มบูธ</button>
+            <input type="text" id="boothName" [(ngModel)]="newBooth.boothName" name="boothName" required>
+    
+            <label for="boothSize">ขนาด:</label>
+            <input type="text" id="boothSize" [(ngModel)]="newBooth.boothSize" name="boothSize" required>
+    
+            <label for="products_sold">สินค้า:</label>
+            <input type="text" id="products_sold" [(ngModel)]="newBooth.products_sold" name="products_sold" required>
+    
+            <label for="boothStatus">สถานะ:</label>
+            <input type="text" id="boothStatus" [(ngModel)]="newBooth.boothStatus" name="boothStatus" required>
+    
+            <label for="boothPrice">ราคา:</label>
+            <input type="text" id="boothPrice" [(ngModel)]="newBooth.boothPrice" name="boothPrice" required>
+    
+            <button type="submit" [disabled]="loading">{{ newBooth.boothID ? 'อัปเดตบูธ' : 'เพิ่มบูธ' }}</button>
+            <button type="button" (click)="resetBoothForm()">รีเซ็ต</button>
         </form>
     </div>
+    
+
+    <div *ngIf="loading">กำลังโหลด...</div>
 </div>

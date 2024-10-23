@@ -15,42 +15,49 @@
         <table>
             <thead>
                 <tr>
-                    <th>ชื่องาน</th>
-                    <th>วันที่เริ่มงาน</th>
-                    <th>วันที่จบงาน</th>
-                    <th>แก้ไข/ลบ</th>
+                  <th>รหัสงาน</th> <!-- เพิ่ม ID งาน -->
+                  <th>ชื่องาน</th>
+                  <th>วันที่เริ่มงาน</th>
+                  <th>วันที่จบงาน</th>
+                  <th>แก้ไข/ลบ</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let work of works">
-                    <td>{{ work.workName }}</td>
-                    <td>{{ work.work_date_Start | date: 'dd MMMM yyyy' }}</td>
-                    <td>{{ work.work_date_End | date: 'dd MMMM yyyy' }}</td>
-                    <td>
-                        <button class="edit-btn" (click)="editWork(work)">แก้ไข</button>
-                        <button class="delete-btn" (click)="deleteWork(work.workCode)">ลบ</button>
-                    </td>
+                  <td>{{ work.workID }}</td> <!-- แสดง workID -->
+                  <td>{{ work.workName }}</td>
+                  <td>{{ work.work_date_Start | date: 'dd MMMM yyyy' }}</td>
+                  <td>{{ work.work_date_End | date: 'dd MMMM yyyy' }}</td>
+                  <td>
+                    <button class="edit-btn" (click)="populateForm(work)">แก้ไข</button>
+                    <button class="delete-btn" (click)="deleteWork(work.workID)">ลบ</button> <!-- เปลี่ยนเป็น workID -->
+                  </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div class="form-section">
-        <h3>เพิ่มงานใหม่</h3>
-        <form>
-            <label for="eventCode">รหัสการจัดงาน:</label>
-            <input type="text" id="eventCode" name="eventCode" placeholder="กรอกรหัสการจัดงาน">
-
+        <h3>{{ isEditing ? 'แก้ไขงาน' : 'เพิ่มงานใหม่' }}</h3>
+        <form (ngSubmit)="isEditing ? updateWork() : addWork()">
+            
+            <!-- แสดง ID งาน เฉพาะตอนแก้ไข -->
+            <div *ngIf="isEditing">
+                <input type="hidden" id="workID" [(ngModel)]="currentWork.workID" name="workID" readonly>
+            </div>
+    
             <label for="eventName">ชื่องาน:</label>
-            <input type="text" id="eventName" name="eventName" placeholder="กรอกชื่องาน">
-
+            <input type="text" id="eventName" [(ngModel)]="currentWork.workName" name="eventName" placeholder="กรอกชื่องาน" required>
+    
             <label for="eventStartDate">วันที่เริ่มงาน:</label>
-            <input type="date" id="eventStartDate" name="eventStartDate">
-
+            <input type="date" id="eventStartDate" [(ngModel)]="currentWork.work_date_Start" name="eventStartDate" required>
+    
             <label for="eventEndDate">วันที่จบงาน:</label>
-            <input type="date" id="eventEndDate" name="eventEndDate">
-
-            <button type="submit">เพิ่มงาน</button>
+            <input type="date" id="eventEndDate" [(ngModel)]="currentWork.work_date_End" name="eventEndDate" required>
+    
+            <button type="submit">{{ isEditing ? 'อัปเดตงาน' : 'เพิ่มงาน' }}</button>
+            <button type="button" (click)="resetForm()">รีเซ็ต</button>
         </form>
     </div>
+    
 </div>

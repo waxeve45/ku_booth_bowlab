@@ -1,66 +1,82 @@
 <div class="container">
     <div class="navbar">
-        <a routerLink="/dashboard">ภาพรวม</a>
-        <a routerLink="/work">การจัดงาน</a>
-        <a routerLink="/zonemanage">จัดการโซน</a>
-        <a routerLink="/boothmanage">จัดการบูธ</a>
-        <a routerLink="/membermanage">จัดการสมาชิก</a>
-        <a routerLink="/bookingreport">รายงานผลการจอง</a>
-        <a routerLink="/approval">อนุมัติการจอง</a>
-        <a routerLink="/">ออกจากระบบ</a>
+      <a routerLink="/dashboard">ภาพรวม</a>
+      <a routerLink="/work">การจัดงาน</a>
+      <a routerLink="/zonemanage">จัดการโซน</a>
+      <a routerLink="/boothmanage">จัดการบูธ</a>
+      <a routerLink="/membermanage">จัดการสมาชิก</a>
+      <a routerLink="/bookingreport">รายงานผลการจอง</a>
+      <a routerLink="/approval">อนุมัติการจอง</a>
+      <a routerLink="/">ออกจากระบบ</a>
     </div>
-
+  
     <div class="content">
-        <div class="table-container">
-            <h2>จัดการโซน</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>รหัสโซน</th>
-                        <th>รหัสการจัดงาน</th>
-                        <th>จำนวนบูธ</th>
-                        <th>ชื่อโซน</th>
-                        <th>แก้ไข/ลบ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Z001</td>
-                        <td>1</td>
-                        <td>10</td>
-                        <td>โซนสำหรับสินค้าการเกษตร</td>
-                        <td>
-                            <button class="edit-btn">แก้ไข</button>
-                            <button class="delete-btn">ลบ</button>
-                        </td>
-                    </tr>
-                    <!-- เพิ่มข้อมูลเพิ่มเติมได้ที่นี่ -->
-                </tbody>
-            </table>
-        </div>
-
-        <div class="form-container">
-            <h3>เพิ่มโซนใหม่</h3>
-            <form>
-                <label for="zoneCode">รหัสโซน:</label>
-                <input type="text" id="zoneCode" name="zoneCode" placeholder="รหัสโซน" required>
-
-                <label for="eventCode">รหัสการจัดงาน:</label>
-                <select id="eventCode" name="eventCode" required>
-                    <option value="" disabled selected>เลือกการจัดงาน</option>
-                    <option value="EVT001">งาน1</option>
-                    <option value="EVT002">งาน2</option>
-                    <option value="EVT003">งาน3</option>
-                </select>
-
-                <label for="boothAmount">จำนวนบูธ:</label>
-                <input type="number" id="boothAmount" name="boothAmount" placeholder="จำนวนบูธ" required>
-
-                <label for="zoneName">ชื่อโซน:</label>
-                <input type="text" id="zoneName" name="zoneName" placeholder="ชื่อโซน" required>
-
-                <button type="submit" class="submit-btn">เพิ่มโซน</button>
-            </form>
-        </div>
+      <div class="table-container">
+        <h2>จัดการโซน</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>รหัสโซน</th>
+              <th>รหัสการจัดงาน</th>
+              <th>จำนวนบูธ</th>
+              <th>ชื่อโซน</th>
+              <th>แก้ไข/ลบ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let zone of zones">
+              <td>{{ zone.zoneID }}</td>
+              <td>{{ zone.workID }}</td>
+              <td>{{ zone.Number_of_booths }}</td>
+              <td>{{ zone.zoneName }}</td>
+              <td>
+                <button (click)="startEditZone(zone)" class="edit-btn">แก้ไข</button>
+                <button (click)="deleteZone(zone.zoneID)" class="delete-btn">ลบ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="form-container">
+        <h3 *ngIf="isEditing; else addZone">แก้ไขโซน</h3>
+        <ng-template #addZone><h3>เพิ่มโซนใหม่</h3></ng-template>
+  
+        <form *ngIf="editingZone; else createZoneForm">
+          <label for="zoneCode"></label>
+          <input type="hidden" id="zoneCode" [(ngModel)]="editingZone.zoneID" name="zoneCode" readonly>
+  
+          <label for="eventCode">รหัสการจัดงาน:</label>
+          <input type="text" id="eventCode" [(ngModel)]="editingZone.workID" name="eventCode" placeholder="รหัสการจัดงาน" required>
+  
+          <label for="boothAmount">จำนวนบูธ:</label>
+          <input type="number" id="boothAmount" [(ngModel)]="editingZone.Number_of_booths" name="boothAmount" required>
+  
+          <label for="zoneName">ชื่อโซน:</label>
+          <input type="text" id="zoneName" [(ngModel)]="editingZone.zoneName" name="zoneName" required>
+  
+          <button type="submit" class="submit-btn" (click)="saveEdit()">บันทึกการแก้ไข</button>
+          <button type="button" class="cancel-btn" (click)="cancelEdit()">ยกเลิก</button>
+        </form>
+  
+        <ng-template #createZoneForm>
+          
+            <label for="zoneCode"></label>
+            <input type="hidden" id="zoneCode" [(ngModel)]="newZone.zoneID" name="zoneCode" placeholder="รหัสโซน" required>
+  
+            <label for="eventCode">รหัสการจัดงาน:</label>
+            <input type="text" id="eventCode" [(ngModel)]="newZone.workID" name="eventCode" placeholder="รหัสการจัดงาน" required>
+  
+            <label for="boothAmount">จำนวนบูธ:</label>
+            <input type="number" id="boothAmount" [(ngModel)]="newZone.Number_of_booths" name="boothAmount" placeholder="จำนวนบูธ" required>
+  
+            <label for="zoneName">ชื่อโซน:</label>
+            <input type="text" id="zoneName" [(ngModel)]="newZone.zoneName" name="zoneName" placeholder="ชื่อโซน" required>
+  
+            <button (click)="addZones()" class="submit-btn">เพิ่มโซน</button>
+         
+        </ng-template>
+      </div>
     </div>
-</div>
+  </div>
+  
