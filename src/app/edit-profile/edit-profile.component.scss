@@ -8,7 +8,31 @@ body {
 *{
     font-family: "Noto Sans Thai", sans-serif;
 }
+a:link {
+    color: red; /* สีของลิงค์ที่ยังไม่ถูกคลิก */
+    text-decoration: none; /* ลบเส้นใต้ */
+}
 
+a:visited {
+    color: yellow; /* สีของลิงค์ที่ถูกคลิกแล้ว */
+    text-decoration: none; /* ลบเส้นใต้ */
+}
+
+a:hover {
+    color: hotpink; /* สีเมื่อเลื่อนเมาส์ไปที่ลิงค์ */
+    text-decoration: none; /* ลบเส้นใต้ */
+}
+
+a:active {
+    color: blue; /* สีเมื่อคลิกที่ลิงค์ */
+    text-decoration: none; /* ลบเส้นใต้ */
+}
+label{
+    color: #009c98;
+    margin-bottom: 15px;
+    text-align: start;
+    padding-bottom: 5px;
+}
 .container {
     width: 400px;
     margin: 10px auto;
@@ -26,15 +50,16 @@ body {
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 25px;
     color: #009c98;
-    font-size: 24px;
-    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 2px solid #009c98;
+    padding-bottom: 5px;
 }
 
 .form-group {
     margin-bottom: 20px;
+    color: #009c98;
 }
 .form-group input, .form-group select { 
     width: 100%;
@@ -48,7 +73,6 @@ label {
     display: block;
     margin-bottom: 8px;
     color: #555;
-    font-weight: bold;
 }
 
 input[type="text"],
@@ -97,6 +121,7 @@ button:hover {
 .change-password {
     margin-top: 30px;
     text-align: center;
+    text-decoration: none;
 }
 
 h3 {

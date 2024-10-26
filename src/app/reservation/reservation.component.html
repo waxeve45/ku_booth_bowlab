@@ -1,65 +1,55 @@
-<div class="content-wrapper">
-    <div class="booth-container">
-        <div class="booth-section">
-            <img src="../../assets/plant.png" alt="Booth Image" class="booth-image" />
-            <div class="booth-details">
-                <h2>ลำดับ 1</h2>
-                <p>บูธหมายเลข <strong>10</strong></p>
-                <p><strong>ราคา:</strong> 1500 บาท</p>
-                <p><strong>ขนาด:</strong> 2.5 × 2.5 เมตร</p>
-            </div>
-        </div>
-        <div class="booth-section">
-            <img src="../../assets/plant.png" alt="Booth Image" class="booth-image" />
-            <div class="booth-details">
-                <h2>ลำดับ 2</h2>
-                <p>บูธหมายเลข <strong>11</strong></p>
-                <p><strong>ราคา:</strong> 1800 บาท</p>
-                <p><strong>ขนาด:</strong> 3 × 3 เมตร</p>
-            </div>
-        </div>
-        <div class="booth-section">
-            <img src="../../assets/plant.png" alt="Booth Image" class="booth-image" />
-            <div class="booth-details">
-                <h2>ลำดับ 3</h2>
-                <p>บูธหมายเลข <strong>11</strong></p>
-                <p><strong>ราคา:</strong> 1800 บาท</p>
-                <p><strong>ขนาด:</strong> 3 × 3 เมตร</p>
-            </div>
-        </div>
-        <div class="booth-section">
-            <img src="../../assets/plant.png" alt="Booth Image" class="booth-image" />
-            <div class="booth-details">
-                <h2>ลำดับ 4</h2>
-                <p>บูธหมายเลข <strong>11</strong></p>
-                <p><strong>ราคา:</strong> 1800 บาท</p>
-                <p><strong>ขนาด:</strong> 3 × 3 เมตร</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="payment-section">
-    <h3>ชื่อ: แขก นามสกุล แขก</h3>
-    <p>กรุณาชำระเงิน <strong></strong></p>
-
-    <div class="qr-container">
-        <img src="../../assets/qrcode.png" alt="QR Code" />
+<div class="container">
+    <div class="content-wrapper">
+        <h2 class="wordbooth" >จัดการบูธ</h2>
+        <table class="booth-table">
+            
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รูปภาพ</th>
+                    <th>บูธหมายเลข</th>
+                    <th>ราคา</th>
+                    <th>ขนาด</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let booth of selectedBooths">
+                    <tr>
+                        <td data-label="ลำดับ">{{cout()}}</td>
+                        <td data-label="รูปภาพ"><img src="../../assets/plant.png" alt="Booth Image" class="booth-image" /></td>
+                        <td data-label="บูธหมายเลข">{{ booth.boothID }}</td>
+                        <td data-label="ราคา">{{ booth.boothPrice }} บาท</td>
+                        <td data-label="ขนาด">{{ booth.boothSize }}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 
-    <button class="upload-btn">บันทึกสลิปการโอน</button>
-
-    <p class="payment-info">
-        สแกน QR code เพื่อชำระเงินเข้าบัญชี<br />
-        <strong>มหาวิทยาลัยเกษตรศาสตร์ สกลนคร</strong>
-    </p>
-
-    <p class="total-amount">ราคารวมทั้งหมด: <strong>1500 บาท</strong></p>
-
-    <div class="upload-slip">
-        <label for="file-upload" class="custom-file-upload">เลือกไฟล์</label>
-        <input id="file-upload" type="file" />
+    <div class="payment-section">
+        <h3>ชื่อ: แขก นามสกุล แขก</h3>
+        <p>กรุณาชำระเงิน <strong></strong></p>
+        <div class="qr-container">
+            <img src="../../assets/qrcode.png" alt="QR Code" />
+        </div>
+        <button class="upload-btn">บันทึกสลิปการโอน</button>
+        <p class="payment-info">
+            สแกน QR code เพื่อชำระเงินเข้าบัญชี<br />
+            <strong>มหาวิทยาลัยเกษตรศาสตร์ สกลนคร</strong>
+        </p>
+        <p class="total-amount">ราคารวมทั้งหมด: <strong>{{coutPrice()}} บาท</strong></p>
+        <div class="upload-slip">
+            <label for="file-upload" class="custom-file-upload">เลือกไฟล์</label>
+            <input id="file-upload" type="file" />
+            
+        </div>
+        <div class="input-about">
+            <ng-container *ngFor="let booth of selectedBooths">
+            <label for="about">สิ่งจะที่ขายในบูธ:{{booth.boothName}}</label>
+            <input type="text" id="fname" >
+        </ng-container>
+        </div>
+        <button class="confirm-btn">ทำการจอง</button>
+        <button class="cancle-btn" routerLink="/booth">ยกเลิกการจอง</button>
     </div>
-
-    <button class="confirm-btn">ทำการจอง</button>
 </div>

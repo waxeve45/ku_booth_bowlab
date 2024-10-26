@@ -18,7 +18,7 @@ export class AdminboothmanageComponent implements OnInit {
   booths: Booth[] = [];
   loading: boolean = false;
 
-  newBooth: Booth = {
+  eBooth: Booth = {
     boothID: '',
     boothName: '',
     zoneID: '',
@@ -39,39 +39,55 @@ export class AdminboothmanageComponent implements OnInit {
 
   getAllBooths() {
     this.loading = true; // เริ่มโหลดข้อมูล
-    this.http.get<Booth[]>(this.dataService.apiEndpoint + '/booth-get19').subscribe(
-      (response) => {
+    this.http.get(this.dataService.apiEndpoint + '/booth-get19').subscribe(
+      (response : any) => {
         this.booths = response;
         this.loading = false; // โหลดข้อมูลเสร็จแล้ว
-      },
-      (error) => {
-        console.error('Error fetching booths:', error);
-        this.loading = false; // โหลดข้อมูลเสร็จแล้ว แม้จะมีข้อผิดพลาด
       }
     );
   }
 
   addOrUpdateBooth() {
     this.loading = true;
-    console.log('Booth Data:', this.newBooth); // ตรวจสอบข้อมูลที่ส่ง
+    console.log(this.eBooth);
 
-    const endpoint = this.newBooth.boothID ? '/booth-update' : '/booth-add';
-    const method = this.newBooth.boothID ? this.http.put : this.http.post;
+    if (this.eBooth.boothID) {
+        this.updateBooth();
+    } else {
+        this.addBooth();
+    }
+}
 
-    method.call(this.http, this.dataService.apiEndpoint + endpoint, this.newBooth).subscribe({
+addBooth() {
+    this.http.post(this.dataService.apiEndpoint + '/booth-add', this.eBooth).subscribe({
         next: () => {
-            Swal.fire(this.newBooth.boothID ? 'อัปเดตบูธสำเร็จ!' : 'เพิ่มบูธสำเร็จ!', this.newBooth.boothID ? 'บูธถูกอัปเดตเรียบร้อยแล้ว.' : 'บูธถูกเพิ่มเรียบร้อยแล้ว.', 'success');
+            Swal.fire('เพิ่มบูธสำเร็จ!', 'บูธถูกเพิ่มเรียบร้อยแล้ว.', 'success');
             this.getAllBooths();
             this.resetBoothForm();
             this.loading = false;
         },
         error: (error) => {
-            console.error('Error processing booth:', error);
+            console.error('Error adding booth:', error);
             this.loading = false;
-            Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถประมวลผลบูธได้ กรุณาลองใหม่อีกครั้ง.', 'error');
         }
     });
 }
+
+updateBooth() {
+    this.http.put(this.dataService.apiEndpoint + '/booth-update', this.eBooth).subscribe({
+        next: () => {
+            Swal.fire('อัปเดตบูธสำเร็จ!', 'บูธถูกอัปเดตเรียบร้อยแล้ว.', 'success');
+            this.getAllBooths();
+            this.resetBoothForm();
+            this.loading = false;
+        },
+        error: (error) => {
+            console.error('Error updating booth:', error);
+            this.loading = false;
+        }
+    });
+}
+
 
 deleteBooth(boothID: string) {
   Swal.fire({
@@ -101,7 +117,7 @@ deleteBooth(boothID: string) {
 
 
   editBooth(booth: Booth) {
-    this.newBooth = { ...booth }; // คัดลอกข้อมูลของบูธที่เลือก
+    this.eBooth = { ...booth }; // คัดลอกข้อมูลของบูธที่เลือก
   }
 
   cancelEdit() {
@@ -109,6 +125,6 @@ deleteBooth(boothID: string) {
   }
 
   resetBoothForm() {
-    this.newBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '' };
+    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '' };
   }
 }

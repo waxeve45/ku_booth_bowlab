@@ -12,7 +12,6 @@
 // }
 export class Work {
     workID!: string;
-    workCode!: string;
     workName!: string;
     work_date_Start!: string;
     work_date_End!: string;

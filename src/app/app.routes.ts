@@ -33,7 +33,7 @@ export const routes: Routes = [
     { path: 'EditProfile', component: EditProfileComponent },
     { path: 'listbooking', component: ListbookingComponent },
     { path: 'reservation', component: ReservationComponent },
-    { path: 'Editpassword', component: EditpasswordComponent },
+    { path: 'Editpassword/:userId', component: EditpasswordComponent },
 
     // admin
     { path: 'dashboard', component: AdmindashboardComponent },

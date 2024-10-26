@@ -35,7 +35,7 @@ export class AdminzonemanageComponent implements OnInit {
   }
 
   getAllZone() {
-    this.http.get<Zone[]>(this.dataService.apiEndpoint + '/showzone16').subscribe((response) => {
+    this.http.get(this.dataService.apiEndpoint + '/showzone16').subscribe((response: any) => {
       this.zones = response;
     });
   }

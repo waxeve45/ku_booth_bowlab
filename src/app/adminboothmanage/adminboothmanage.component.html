@@ -44,30 +44,30 @@
     </div>
 
     <div class="form-container">
-        <h3>{{ newBooth.boothID ? 'แก้ไขบูธ' : 'เพิ่มบูธใหม่' }}</h3>
+        <h3>{{ eBooth.boothID ? 'แก้ไขบูธ' : 'เพิ่มบูธใหม่' }}</h3>
         <form (ngSubmit)="addOrUpdateBooth()">
-            <label for="boothID">รหัสบูธ:</label>
-            <input type="text" id="boothID" [(ngModel)]="newBooth.boothID" name="boothID" required [disabled]="true">
+
+            <input type="hidden" id="boothID" [(ngModel)]="eBooth.boothID" name="boothID" required [disabled]="true">
     
             <label for="zoneID">รหัสโซน:</label>
-            <input type="text" id="zoneID" [(ngModel)]="newBooth.zoneID" name="zoneID" required>
+            <input type="text" id="zoneID" [(ngModel)]="eBooth.zoneID" name="zoneID" required>
     
             <label for="boothName">ชื่อบูธ:</label>
-            <input type="text" id="boothName" [(ngModel)]="newBooth.boothName" name="boothName" required>
+            <input type="text" id="boothName" [(ngModel)]="eBooth.boothName" name="boothName" required>
     
             <label for="boothSize">ขนาด:</label>
-            <input type="text" id="boothSize" [(ngModel)]="newBooth.boothSize" name="boothSize" required>
+            <input type="text" id="boothSize" [(ngModel)]="eBooth.boothSize" name="boothSize" required>
     
             <label for="products_sold">สินค้า:</label>
-            <input type="text" id="products_sold" [(ngModel)]="newBooth.products_sold" name="products_sold" required>
+            <input type="text" id="products_sold" [(ngModel)]="eBooth.products_sold" name="products_sold" required>
     
             <label for="boothStatus">สถานะ:</label>
-            <input type="text" id="boothStatus" [(ngModel)]="newBooth.boothStatus" name="boothStatus" required>
+            <input type="text" id="boothStatus" [(ngModel)]="eBooth.boothStatus" name="boothStatus" required>
     
             <label for="boothPrice">ราคา:</label>
-            <input type="text" id="boothPrice" [(ngModel)]="newBooth.boothPrice" name="boothPrice" required>
+            <input type="text" id="boothPrice" [(ngModel)]="eBooth.boothPrice" name="boothPrice" required>
     
-            <button type="submit" [disabled]="loading">{{ newBooth.boothID ? 'อัปเดตบูธ' : 'เพิ่มบูธ' }}</button>
+            <button type="submit" [disabled]="loading">{{ eBooth.boothID ? 'อัปเดตบูธ' : 'เพิ่มบูธ' }}</button>
             <button type="button" (click)="resetBoothForm()">รีเซ็ต</button>
         </form>
     </div>

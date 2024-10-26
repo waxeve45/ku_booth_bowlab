@@ -1,110 +1,155 @@
 /* ตั้งค่าพื้นฐาน */
 body {
     font-family: 'Prompt', sans-serif;
-    background-color: #f4f6f8;
+    background-color: #f0f2f5;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* ยืดตามเนื้อหา */
+    overflow-y: auto; /* กรณีมีหลายการ์ด */
 }
-
-.booking-card {
-    display: flex;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 100%;
-    overflow: hidden;
-    margin: 10px auto;
-}
-
 *{
     font-family: "Noto Sans Thai", sans-serif;
 }
 
-.booking-image img {
-    width: 200px;
-    height: auto;
-    object-fit: cover;
-    border-right: 1px solid #eee;
+/* คอนเทนเนอร์กลาง */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* ให้การ์ดเรียงจากบนลงล่าง */
+    width: 100%; 
+    padding: 20px;
 }
 
-.booking-details {
-    padding: 20px;
-    flex-grow: 1;
+/* คอนเทนเนอร์การ์ด */
+.cards-container {
+    display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 70%;
+  
+}
+
+/* การ์ดจอง */
+.booking-card {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+    min-height: 250px; /* ปรับความสูงขั้นต่ำ */
+}
+
+/* ส่วนซ้าย */
+.booking-left {
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    flex: 0 0 160px; /* กำหนดความกว้างคงที่ให้กับรูป */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    
+    justify-content: center;
+    align-items: center;
 }
 
-.booking-details h3 {
+.booking-left img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+/* ส่วนขวา */
+.booking-right {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* เนื้อหาจัดเรียงในแนวตั้ง */
+    justify-content: space-between; /* กระจายเนื้อหา */
+}
+
+.booking-right h3 {
     margin-top: 0;
-    color: #009688;
-    font-size: 20px;
+    color: #00796b;
 }
 
-.booking-details p {
+.booking-right p {
     margin: 5px 0;
-    color: #555;
-    font-size: 16px;
-    
+    font-size: 14px;
 }
 
-.booking-details p i {
-    margin-right: 8px;
-    color: #007BFF;
+.status {
+    color: #d32f2f;
+    font-weight: bold;
 }
 
-.cancel-btn {
-    background-color: #d9534f;
-    color: #fff;
+/* ปุ่ม */
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.submit-btn, .cancel-btn {
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.cancel-btn i {
-    margin-right: 5px;
+.submit-btn {
+    background-color: #00bfa6;
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #00796b;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #d32f2f;
+    color: #fff;
 }
 
 .cancel-btn:hover {
-    background-color: #c9302c;
+    background-color: #b71c1c;
+    transform: scale(1.05);
 }
 
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Query สำหรับหน้าจอเล็ก */
 @media (max-width: 600px) {
     .booking-card {
         flex-direction: column;
-        max-width: 90%;
+        width: 95%;
     }
 
-    .booking-image img {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-    }
-
-    .booking-details {
-        padding: 15px;
-    }
-
-    .booking-details h3 {
-        font-size: 18px;
-    }
-
-    .booking-details p {
-        font-size: 14px;
-    }
-
-    .cancel-btn {
-        padding: 8px 12px;
+    .buttons {
+        flex-direction: column;
     }
 }

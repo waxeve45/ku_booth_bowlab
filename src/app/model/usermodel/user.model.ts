@@ -5,6 +5,7 @@
 //   const user = Convert.toUser(json);
 
 export interface User {
+    user_id: number;
     prefix: string;
     fname:  string;
     lname:  string;

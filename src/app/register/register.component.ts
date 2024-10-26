@@ -20,7 +20,7 @@ export class RegisterComponent {
  ){}
 
  register(prefix: any, fname: any, lname: any, phone: any, email: any, password: any, confirm_password: any) {
-  if (password !== confirm_password) {
+  if (password != confirm_password) {
     console.log("รหัสผ่านไม่ตรงกัน");
     return; // Stop the registration process if passwords don't match
   }
