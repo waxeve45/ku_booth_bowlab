@@ -1,5 +1,6 @@
 <div class="container">
   <h1>บูธต่างๆ</h1>
+  <p>1 ท่านจองได้เพียง 4 บูธเท่านั้น</p>
   <main>
     <section class="zone-list">
       <ng-container *ngFor="let booth of booth">
@@ -23,10 +24,16 @@
         </div>
       </ng-container>
     </section>
-  </main>
+  </main> 
+  <ng-container *ngIf="checkReserv.count >= 4">
+    <p>ไม่สามารถจองบูธเพิ่มได้</p>
+</ng-container>
 </div>
 
-<button (click)="reserveBooths()">
+
+
+<ng-container *ngIf="checkReserv.count < 4">
+  <button (click)="reserveBooths()">
   <div class="svg-wrapper-1">
     <div class="svg-wrapper">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -37,3 +44,5 @@
   </div>
   <span>จอง</span>
 </button>
+</ng-container>
+

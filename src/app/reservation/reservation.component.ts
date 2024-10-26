@@ -35,6 +35,5 @@ export class ReservationComponent {
   return this.selectedBooths
   .map(booths => Number(booths.boothPrice))
   .reduce((total, boothPrice)=> total + boothPrice, 0)
-  // return this.selectedBooths.reduce((total, booth) => total + booth.price );
 }
 }
