@@ -51,7 +51,6 @@ export class ZoneAComponent implements OnInit {
   getBooth() {
     let params = new HttpParams();
     params = params.set('zoneID', this.zoneid);
-
     this.http
       .get(this.dataService.apiEndpoint + '/ShowGeneralBooth', { params })
       .subscribe((response: any) => {

@@ -1,10 +1,12 @@
 <div class="container">
   <h1>บูธต่างๆ</h1>
-  <p>1 ท่านจองได้เพียง 4 บูธเท่านั้น</p>
+  <div class="reservation-rules">
+    <p>❗<strong>ข้อจำกัด:</strong> 1 ท่านจองได้เพียง 4 บูธเท่านั้น</p>
+  </div>
   <main>
     <section class="zone-list">
       <ng-container *ngFor="let booth of booth">
-        <div class="zone-card">
+        <div class="zone-card" [class.disabled]="booth.boothStatus === 'จองแล้ว'">
           <img src="../../assets/theater.png" alt="Zone A Image" class="zone-image">
           <div class="zone-info">
             <h3>บูธ {{ booth.boothID }}</h3>
@@ -13,36 +15,46 @@
             <p>สถานะบูธ: <span class="zone-detail">{{ booth.boothStatus }}</span></p>
             <p>ราคา: <span class="zone-detail">{{ booth.boothPrice }}</span></p>
           </div>
+
+          <!-- Checkbox with Conditional Disabling -->
           <div class="checkbox-wrapper-31">
-            <input type="checkbox" class="zone-checkbox" (click)="reserBoothSelect($event, booth)" />
+            <input 
+              type="checkbox" 
+              class="zone-checkbox" 
+              (click)="reserBoothSelect($event, booth)"
+              [disabled]="booth.boothStatus === 'จองแล้ว'" />
             <svg viewBox="0 0 35.6 35.6">
               <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
               <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
               <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
             </svg>
           </div>
+
+          <!-- Unavailability Message -->
+          <div *ngIf="booth.boothStatus === 'จองแล้ว'" class="unavailable-message">
+            ไม่สามารถจองบูธนี้ได้เนื่องจากถูกจองแล้ว
+          </div>
         </div>
       </ng-container>
     </section>
   </main> 
   <ng-container *ngIf="checkReserv.count >= 4">
-    <p>ไม่สามารถจองบูธเพิ่มได้</p>
-</ng-container>
+    <div class="floating-limit-message">
+      <p>⚠️ ไม่สามารถจองบูธเพิ่มได้</p>
+    </div>
+  </ng-container>
 </div>
-
-
 
 <ng-container *ngIf="checkReserv.count < 4">
   <button (click)="reserveBooths()">
-  <div class="svg-wrapper-1">
-    <div class="svg-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-        <path fill="none" d="M0 0h24v24H0z"></path>
-        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-      </svg>
+    <div class="svg-wrapper-1">
+      <div class="svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z"></path>
+          <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+        </svg>
+      </div>
     </div>
-  </div>
-  <span>จอง</span>
-</button>
+    <span>จอง</span>
+  </button>
 </ng-container>
-

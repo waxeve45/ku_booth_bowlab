@@ -40,16 +40,16 @@
         <p class="total-amount">ราคารวมทั้งหมด: <strong>{{coutPrice()}} บาท</strong></p>
         <div class="upload-slip">
             <label for="file-upload" class="custom-file-upload">เลือกไฟล์</label>
-            <input id="file-upload" type="file" />
+            <input id="file-upload" type="file" [(ngModel)]="payment_slip"/>
             
         </div>
         <div class="input-about">
-            <ng-container *ngFor="let booth of selectedBooths">
+            <ng-container *ngFor="let booth of selectedBooths; let i = index">
             <label for="about">สิ่งจะที่ขายในบูธ:{{booth.boothName}}</label>
-            <input type="text" id="fname" >
+            <input type="text" id="name_by_{{ i }}" [(ngModel)]="boothItems[i]" placeholder= "กรอกสิ่งที่จะขาย" >
         </ng-container>
         </div>
-        <button class="confirm-btn">ทำการจอง</button>
+        <button class="confirm-btn" (click)="reserveBooth()">ทำการจอง</button>
         <button class="cancle-btn" routerLink="/booth">ยกเลิกการจอง</button>
     </div>
 </div>

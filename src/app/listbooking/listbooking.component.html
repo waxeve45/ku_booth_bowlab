@@ -1,74 +1,51 @@
 <div class="wrapper">
-    <div class="cards-container">
-        <!-- การ์ดจองใบที่ 1 -->
-        <div class="booking-card">
-            <div class="booking-left">
-                <img src="../../assets/booth.png" alt="Booth">
-                <p>(ลำดับ 2)</p>
-                <p>บูธหมายเลข 11</p>
-                <p>ราคา 2000</p>
-            </div>
-            <div class="booking-right">
-                <h3>โซน: A พันธ์พืช</h3>
-                <p><i class="fa fa-bullhorn"></i> ของที่ขาย</p>
-                <ul>
-                    <li>ลำดับที่ 1</li>
-                </ul>
-                <p><i class="fa fa-calendar"></i> วันที่จอง 24 ตุลาคม 2567</p>
-                <p><i class="fa fa-calendar-check"></i> วันที่จ่ายเงิน: -</p>
-                <p><i class="fa fa-money-bill-wave"></i> ราคารวม 1500 บาท</p>
-                <p class="status"><i class="fa fa-exclamation-circle"></i> สถานะการจอง: ยังไม่ชำระเงิน</p>
-                <div class="buttons">
-                    <button class="submit-btn" routerLink="/reservation"><i class="fa fa-credit-card" ></i> ทำการชำระเงิน</button>
-                    <button class="cancel-btn"><i class="fa fa-times-circle"></i> ยกเลิกการจอง</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- การ์ดจองใบที่ 2 -->
-        <div class="booking-card">
-            <div class="booking-left">
-                <img src="../../assets/booth.png" alt="Booth">
-                <p>(ลำดับ 1)</p>
-                <p>บูธหมายเลข 11</p>
-                <p>ราคา 2000</p>
-            </div>
-            <div class="booking-left">
-                <img src="../../assets/booth.png" alt="Booth">
-                <p>(ลำดับ 2)</p>
-                <p>บูธหมายเลข 12</p>
-                <p>ราคา 2000</p>
-            </div>
-            <div class="booking-left">
-                <img src="../../assets/booth.png" alt="Booth">
-                <p>(ลำดับ 3)</p>
-                <p>บูธหมายเลข 13</p>
-                <p>ราคา 2000</p>
-            </div>
-            <div class="booking-left">
-                <img src="../../assets/booth.png" alt="Booth">
-                <p>(ลำดับ 4)</p>
-                <p>บูธหมายเลข 14</p>
-                <p>ราคา 2000</p>
-            </div>
-            <div class="booking-right">
-                <h3>โซน: B ดอกไม้</h3>
-                <p><i class="fa fa-bullhorn"></i> ของที่ขาย</p>
-                <ul>
-                    <li>ลำดับที่ 1</li>
-                    <li>ลำดับที่ 2</li>
-                    <li>ลำดับที่ 3</li>
-                    <li>ลำดับที่ 4</li>
-                </ul>
-                <p><i class="fa fa-calendar"></i> วันที่จอง 25 ตุลาคม 2567</p>
-                <p><i class="fa fa-calendar-check"></i> วันที่จ่ายเงิน: -</p>
-                <p><i class="fa fa-money-bill-wave"></i> ราคารวม 2000 บาท</p>
-                <p class="status"><i class="fa fa-exclamation-circle"></i> สถานะการจอง: ยังไม่ชำระเงิน</p>
-                <div class="buttons">
-                    <button class="submit-btn"routerLink="/reservation" ><i class="fa fa-credit-card"></i> ทำการชำระเงิน</button>
-                    <button class="cancel-btn"><i class="fa fa-times-circle"></i> ยกเลิกการจอง</button>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="cards-container">
+      <table class="booking-table">
+          <thead>
+              <tr>
+                  <th>ลำดับที่</th>
+                  <th>รูปบูธ</th>
+                  <th>ชื่อบูธ</th>
+                  <th>โซน</th>
+                  <th>วันที่จอง</th>
+                  <th>วันที่จ่ายเงิน</th>
+                  <th>ราคารวม</th>
+                  <th>สถานะ</th>
+                  <th>การจัดการ</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of boothItems; let index = index">
+                  <td>{{ index + 1 }}</td>
+                  <td  class="table-image"> <ng-container *ngFor="let booth of item.boothDetails" ><img src="../../assets/booth.png" alt="Booth" /> </ng-container>
+                      
+                  </td>
+                  <td>
+                      <ul>
+                          <li *ngFor="let booth of item.boothDetails">
+                              {{ booth.boothName }} - ราคา {{ booth.boothPrice }} บาท
+                          </li>
+                      </ul>
+                  </td>
+                  <td>{{ item.zoneName }}</td>
+                  <td>{{ item.reservationDate }}</td>
+                  <td>{{ item.ReservationStatus === "paid" ? item.reservationDate : "-" }}</td>
+                  <td>{{ item.totalPrice }} บาท</td>
+                  <td class="status">
+                      {{ item.ReservationStatus === "paid" ? "ชำระเงินแล้ว" : "ยังไม่ชำระเงิน" }}
+                  </td>
+                  <td class="buttons">
+                    <div class="button-wrapper">
+                        <button class="submit-btn" routerLink="/reservation">
+                            <i class="fa fa-credit-card"></i> ทำการชำระเงิน
+                        </button>
+                        <button class="cancel-btn">
+                            <i class="fa fa-times-circle"></i> ยกเลิกการจอง
+                        </button>
+                    </div>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>

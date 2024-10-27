@@ -25,7 +25,8 @@ export class AdminboothmanageComponent implements OnInit {
     boothSize: '',
     products_sold: '',
     boothPrice: '',
-    boothStatus: ''
+    boothStatus: '',
+    workID: '',
   };
 
   constructor(
@@ -125,6 +126,6 @@ deleteBooth(boothID: string) {
   }
 
   resetBoothForm() {
-    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '' };
+    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '',workID: '' };
   }
 }

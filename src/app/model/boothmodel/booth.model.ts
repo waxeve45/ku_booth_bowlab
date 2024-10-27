@@ -5,13 +5,14 @@
 //   const booth = Convert.toBooth(json);
 
 export interface Booth {
-products_sold: any;
+    products_sold: any;
     boothName:   string;
     boothID:     string;
     boothStatus: string;
     boothPrice:  string;
     boothSize:   string;
-    zoneID: string;
+    zoneID:      string;
+    workID:      string;
 }
 
 // Converts JSON strings to/from your types

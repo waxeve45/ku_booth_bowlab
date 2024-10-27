@@ -39,7 +39,7 @@ export class IndexComponent implements OnInit {
     })
   }
 
-InformationBooth(zoneID: string) {
+InformationBooth(zoneID: string,workID: string) {
   const queryParams ={
     zoneID: zoneID,
   };

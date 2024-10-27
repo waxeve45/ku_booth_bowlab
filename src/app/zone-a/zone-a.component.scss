@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Thai:wght@100..900&display=swap');
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -26,8 +27,15 @@ h1 {
 
 .zone-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* ตั้งให้แถวละ 4 บูธ */
     gap: 2rem;
+    justify-content: start; /* ชิดซ้ายเมื่อมีบูธเดียว */
+}
+
+@media (max-width: 1200px) {
+    .zone-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ปรับให้ responsive บนอุปกรณ์เล็กลง */
+    }
 }
 
 .zone-card {
@@ -36,7 +44,7 @@ h1 {
     background-color: #e0f7f7;
     padding: 1rem;
     text-align: center;
-    margin-bottom: 30px;
+    margin: 0; /* เอา margin-bottom ออกให้บูธชิดกันแถวละ 4 */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -44,6 +52,7 @@ h1 {
     border-right: 5px solid #009c98;
     border-radius: 20px;
 }
+
 
 .zone-card:hover {
     transform: translateY(-10px);
@@ -176,3 +185,68 @@ button:hover span {
 button:active {
     transform: scale(0.98);
 }
+.reservation-rules {
+    text-align: center;
+    font-size: 1.1rem;
+    background-color: #d4f1f1;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-rules p {
+    margin: 0;
+    color: #005f5e;
+    font-weight: bold;
+    
+}
+
+.limit-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #c0392b;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+.floating-limit-message {
+    position: fixed;
+    bottom: 10px; /* Adjust to position above the reservation button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8em 1.2em;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.floating-limit-message span {
+    display: flex;
+    align-items: center;
+}
+
+.zone-card.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .unavailable-message {
+    color: #c0392b;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Existing styles... */
+  
