@@ -52,12 +52,16 @@ export class ZoneAComponent implements OnInit {
     let params = new HttpParams();
     params = params.set('zoneID', this.zoneid);
     this.http
-      .get(this.dataService.apiEndpoint + '/ShowGeneralBooth', { params })
-      .subscribe((response: any) => {
-        this.booth = response;
+      .get<Booth[]>(this.dataService.apiEndpoint + '/ShowGeneralBooth', { params })
+      .subscribe((response) => {
+        this.booth = Array.from(
+          new Map(response.map((booth) => [booth.boothID, booth])).values()
+        );
         console.log(this.booth);
       });
   }
+  
+  
 
   coutReserv() {
     this.http.get(this.dataService.apiEndpoint + '/checkReserva/' + this.userId).subscribe(

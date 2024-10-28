@@ -9,11 +9,12 @@
         <div class="zone-card" [class.disabled]="booth.boothStatus === 'จองแล้ว'">
           <img src="../../assets/theater.png" alt="Zone A Image" class="zone-image">
           <div class="zone-info">
-            <h3>บูธ {{ booth.boothID }}</h3>
-            <p>ชื่อบูธ: <span class="zone-detail">{{ booth.boothName }}</span></p>
-            <p>ขนาดบูธ: <span class="zone-detail">{{ booth.boothSize }}</span></p>
-            <p>สถานะบูธ: <span class="zone-detail">{{ booth.boothStatus }}</span></p>
-            <p>ราคา: <span class="zone-detail">{{ booth.boothPrice }}</span></p>
+            <div class="zone-detail"><h3>บูธ {{ booth.boothID }}</h3>
+              <p>ชื่อบูธ: <span>{{ booth.boothName }}</span></p>
+              <p>ขนาดบูธ: <span>{{ booth.boothSize }}</span></p>
+              <p>สถานะบูธ: <span>{{ booth.boothStatus }}</span></p>
+              <p>ราคา: <span>{{ booth.boothPrice }}</span></p>
+            </div>       
           </div>
 
           <!-- Checkbox with Conditional Disabling -->
@@ -31,9 +32,9 @@
           </div>
 
           <!-- Unavailability Message -->
-          <div *ngIf="booth.boothStatus === 'จองแล้ว'" class="unavailable-message">
+          <!-- <div *ngIf="booth.boothStatus === 'อยู่ระหว่างตรวจสอบ'" class="unavailable-message">
             ไม่สามารถจองบูธนี้ได้เนื่องจากถูกจองแล้ว
-          </div>
+          </div> -->
         </div>
       </ng-container>
     </section>
