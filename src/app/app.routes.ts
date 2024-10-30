@@ -19,6 +19,7 @@ import { AdminbookingreportComponent } from './adminbookingreport/adminbookingre
 import { AdminworkComponent } from './adminwork/adminwork.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { EditpasswordComponent } from './editpassword/editpassword.component';
+import { AdminnavbarComponent } from './adminnavbar/adminnavbar.component';
 
 export const routes: Routes = [
     { path: '', component: IndexComponent },
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'Editpassword/:userId', component: EditpasswordComponent },
 
     // admin
+    { path: 'adminnavbar', component: AdminnavbarComponent },
     { path: 'dashboard', component: AdmindashboardComponent },
     { path: 'boothmanage', component: AdminboothmanageComponent },
     { path: 'zonemanage', component: AdminzonemanageComponent },
@@ -43,6 +45,7 @@ export const routes: Routes = [
     { path: 'membermanage', component: AdminmembermanageComponent },
     { path: 'bookingreport', component: AdminbookingreportComponent },
     { path: 'work', component: AdminworkComponent },
+    
 
     
 ];

@@ -11,6 +11,7 @@ export interface User {
     lname:  string;
     phone:  string;
     email:  string;
+    role:   string;
 }
 
 // Converts JSON strings to/from your types

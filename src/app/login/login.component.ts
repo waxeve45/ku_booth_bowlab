@@ -46,12 +46,12 @@ export class LoginComponent {
         text: "คุณทำการเข้าสู่ระบบสำเร็จ",
         icon: "success"
       }).then(()=>{
-        if(response.user.role = 0){
+        if(response.user.role === 0){
           this.router.navigate(['']).then(()=>{
           window.location.reload();
         });
       } else {
-          this.router.navigate(['dashboard']).then(()=>{
+          this.router.navigate(['/dashboard']).then(()=>{
             window.location.reload();
       });
     }

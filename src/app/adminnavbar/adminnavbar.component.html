@@ -1,0 +1,10 @@
+<div class="navbar" *ngIf="email">
+        <a routerLink="/dashboard"><i class="icon-dashboard"></i> ภาพรวม</a>
+        <a routerLink="/work"><i class="icon-work"></i> การจัดงาน</a>
+        <a routerLink="/zonemanage"><i class="icon-zone"></i> จัดการโซน</a>
+        <a routerLink="/boothmanage"><i class="icon-booth"></i> จัดการบูธ</a>
+        <a routerLink="/membermanage"><i class="icon-member"></i> จัดการสมาชิก</a>
+        <a routerLink="/bookingreport"><i class="icon-report"></i> รายงานผลการจอง</a>
+        <a routerLink="/approval"><i class="icon-approval"></i> อนุมัติการจอง</a>
+        <a (click)="logout()"><i class="icon-logout"></i> ออกจากระบบ</a>
+</div>
