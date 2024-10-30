@@ -36,9 +36,16 @@
                   </td>
                   <td class="buttons">
                     <div class="button-wrapper">
-                        <button class="submit-btn" routerLink="/reservation">
-                            <i class="fa fa-credit-card"></i> ทำการชำระเงิน
-                        </button>
+                        <div class="buttons">
+                            <ng-container *ngIf="messageNotPayment === 'ชำระเงินได้'">
+                              <button class="submit-btn" routerLink="/reservation">
+                                <i class="fa fa-credit-card"></i> ทำการชำระเงิน
+                              </button>
+                            </ng-container>
+                            <ng-container *ngIf="messageNotPayment === 'ชำระเงินไม่ได้'">
+                              <i class="fa fa-credit-card"></i> ไม่สามารถชำระเงินได้
+                            </ng-container>
+                        </div>  
                         <button class="cancel-btn">
                             <i class="fa fa-times-circle"></i> ยกเลิกการจอง
                         </button>

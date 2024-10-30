@@ -27,11 +27,11 @@ export class LoginComponent {
     }
     
     const loginData = {
-      email,password
+      email,password,
     };
     console.log(this.login);
     
-    this.http.post(this.dataService.apiEndpoint+ '/login', loginData).subscribe((response: any) => {
+    this.http.post(this.dataService.apiEndpoint + '/login', loginData).subscribe((response: any) => {
       console.log("login success");
 
       sessionStorage.setItem('isLoggedin', 'true');
@@ -46,19 +46,16 @@ export class LoginComponent {
         text: "คุณทำการเข้าสู่ระบบสำเร็จ",
         icon: "success"
       }).then(()=>{
-        this.router.navigate(['']).then(()=>{
+        if(response.user.role = 0){
+          this.router.navigate(['']).then(()=>{
           window.location.reload();
-        })
+        });
+      } else {
+          this.router.navigate(['dashboard']).then(()=>{
+            window.location.reload();
       });
-      // sessionStorage.setItem('isLoggedin', 'true');
-      // sessionStorage.setItem('userData',JSON.stringify(response.user));
-
-      // const userData = sessionStorage.getItem('userData');
-      // console.log(userData);
-      
-      // this.router.navigate(['']).then(() => {
-      //   window.location.reload();
-      // })
+    }
+    });
     },(error) => {
       console.log(error);
       Swal.fire({

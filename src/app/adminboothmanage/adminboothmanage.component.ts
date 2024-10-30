@@ -71,6 +71,7 @@ addBooth() {
             console.error('Error adding booth:', error);
             this.loading = false;
         }
+        
     });
 }
 
