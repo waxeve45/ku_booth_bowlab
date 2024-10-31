@@ -9,15 +9,15 @@
         <div class="zone-card" [class.disabled]="booth.boothStatus === 'จองแล้ว'">
           <img src="../../assets/theater.png" alt="Zone A Image" class="zone-image">
           <div class="zone-info">
-            <div class="zone-detail"><h3>บูธ {{ booth.boothID }}</h3>
-              <p>ชื่อบูธ: <span>{{ booth.boothName }}</span></p>
-              <p>ขนาดบูธ: <span>{{ booth.boothSize }}</span></p>
-              <p>สถานะบูธ: <span>{{ booth.boothStatus }}</span></p>
+            
+            <div class="zone-detail">
+              <h3>{{ booth.boothName }}</h3>
+              <p>ขนาด: <span>{{ booth.boothSize }} เมตร</span></p>
               <p>ราคา: <span>{{ booth.boothPrice }}</span></p>
+              <p>สถานะ: <span>{{ booth.boothStatus }}</span></p>
             </div>       
           </div>
 
-          <!-- Checkbox with Conditional Disabling -->
           <div class="checkbox-wrapper-31">
             <input 
               type="checkbox" 

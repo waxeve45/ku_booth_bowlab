@@ -17,7 +17,7 @@ export class NavbarComponent {
     prefix: string = '';
     fname: string = '';
     lname: string = '';
-  // email: string = '';
+    role: number = 0;
 
 constructor(
   private http: HttpClient,
@@ -34,6 +34,7 @@ ngOnInit(){
     this.fname = user.fname;
     this.lname = user.lname;
     this.prefix = user.prefix;
+    this.role = user.role;
     console.log(user);
     
   }

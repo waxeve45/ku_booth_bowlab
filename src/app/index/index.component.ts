@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class IndexComponent implements OnInit {
 
-  //ประกาศตัวแปรเพื่อเก็บข้อมูล
+  //ประกาศตัวแปร array เพื่อเก็บข้อมูล
   zones: Zone[] = [];
   
 

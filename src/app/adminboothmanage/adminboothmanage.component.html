@@ -1,4 +1,3 @@
-
 <div class="content">
     <div class="table-container">
         <h2>จัดการบูธ</h2>
@@ -16,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let Booth of booths">
+                <tr *ngFor="let Booth of getDisplayedBooths()">
                     <td>{{ Booth.boothID }}</td>
                     <td>{{ Booth.boothName }}</td>
                     <td>{{ Booth.boothSize }}</td>
@@ -31,37 +30,34 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="pagination-controls">
+            <button (click)="previousPage()" [disabled]="currentPage === 1">< ก่อนหน้า </button>
+            <span>หน้า {{ currentPage }}</span>
+            <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= booths.length">ถัดไป ></button>
+        </div>
     </div>
 
     <div class="form-container">
         <h3>{{ eBooth.boothID ? 'แก้ไขบูธ' : 'เพิ่มบูธใหม่' }}</h3>
         <form (ngSubmit)="addOrUpdateBooth()">
-
             <input type="hidden" id="boothID" [(ngModel)]="eBooth.boothID" name="boothID" required [disabled]="true">
-    
             <label for="zoneID">รหัสโซน:</label>
             <input type="text" id="zoneID" [(ngModel)]="eBooth.zoneID" name="zoneID" required>
-    
             <label for="boothName">ชื่อบูธ:</label>
             <input type="text" id="boothName" [(ngModel)]="eBooth.boothName" name="boothName" required>
-    
             <label for="boothSize">ขนาด:</label>
             <input type="text" id="boothSize" [(ngModel)]="eBooth.boothSize" name="boothSize" required>
-    
             <label for="products_sold">สินค้า:</label>
             <input type="text" id="products_sold" [(ngModel)]="eBooth.products_sold" name="products_sold" required>
-    
             <label for="boothStatus">สถานะ:</label>
             <input type="text" id="boothStatus" [(ngModel)]="eBooth.boothStatus" name="boothStatus" required>
-    
             <label for="boothPrice">ราคา:</label>
             <input type="text" id="boothPrice" [(ngModel)]="eBooth.boothPrice" name="boothPrice" required>
-    
             <button type="submit" [disabled]="loading">{{ eBooth.boothID ? 'อัปเดตบูธ' : 'เพิ่มบูธ' }}</button>
             <button type="button" (click)="resetBoothForm()">รีเซ็ต</button>
         </form>
     </div>
-    
 
     <div *ngIf="loading">กำลังโหลด...</div>
 </div>

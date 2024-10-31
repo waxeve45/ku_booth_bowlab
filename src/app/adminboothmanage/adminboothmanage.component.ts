@@ -17,6 +17,8 @@ import { Booth } from '../model/boothmodel/booth.model';
 export class AdminboothmanageComponent implements OnInit {
   booths: Booth[] = [];
   loading: boolean = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
   eBooth: Booth = {
     boothID: '',
@@ -39,60 +41,74 @@ export class AdminboothmanageComponent implements OnInit {
   }
 
   getAllBooths() {
-    this.loading = true; // เริ่มโหลดข้อมูล
+    this.loading = true;
     this.http.get(this.dataService.apiEndpoint + '/booth-get19').subscribe(
-      (response : any) => {
+      (response: any) => {
         this.booths = response;
-        this.loading = false; // โหลดข้อมูลเสร็จแล้ว
+        this.loading = false;
       }
     );
   }
 
+  getDisplayedBooths() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.booths.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    if ((this.currentPage * this.itemsPerPage) < this.booths.length) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
   addOrUpdateBooth() {
     this.loading = true;
-    console.log(this.eBooth);
-
     if (this.eBooth.boothID) {
-        this.updateBooth();
+      this.updateBooth();
     } else {
-        this.addBooth();
+      this.addBooth();
     }
-}
+  }
 
-addBooth() {
+  addBooth() {
     this.http.post(this.dataService.apiEndpoint + '/booth-add', this.eBooth).subscribe({
-        next: () => {
-            Swal.fire('เพิ่มบูธสำเร็จ!', 'บูธถูกเพิ่มเรียบร้อยแล้ว.', 'success');
-            this.getAllBooths();
-            this.resetBoothForm();
-            this.loading = false;
-        },
-        error: (error) => {
-            console.error('Error adding booth:', error);
-            this.loading = false;
-        }
-        
+      next: () => {
+        Swal.fire('เพิ่มบูธสำเร็จ!', 'บูธถูกเพิ่มเรียบร้อยแล้ว.', 'success');
+        this.getAllBooths();
+        this.resetBoothForm();
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error adding booth:', error);
+        this.loading = false;
+      }
     });
-}
+  }
 
-updateBooth() {
+  updateBooth() {
     this.http.put(this.dataService.apiEndpoint + '/booth-update', this.eBooth).subscribe({
-        next: () => {
-            Swal.fire('อัปเดตบูธสำเร็จ!', 'บูธถูกอัปเดตเรียบร้อยแล้ว.', 'success');
-            this.getAllBooths();
-            this.resetBoothForm();
-            this.loading = false;
-        },
-        error: (error) => {
-            console.error('Error updating booth:', error);
-            this.loading = false;
-        }
+      next: () => {
+        Swal.fire('อัปเดตบูธสำเร็จ!', 'บูธถูกอัปเดตเรียบร้อยแล้ว.', 'success');
+        this.getAllBooths();
+        this.resetBoothForm();
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error updating booth:', error);
+        this.loading = false;
+      }
     });
-}
+  }
 
-
-deleteBooth(boothID: string) {
-  Swal.fire({
+  deleteBooth(boothID: string) {
+    Swal.fire({
       title: 'คุณแน่ใจหรือไม่?',
       text: 'คุณต้องการลบบูธนี้หรือไม่?',
       icon: 'warning',
@@ -101,32 +117,27 @@ deleteBooth(boothID: string) {
       cancelButtonColor: '#d33',
       confirmButtonText: 'ใช่, ลบเลย!',
       cancelButtonText: 'ยกเลิก'
-  }).then((result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-          this.http.delete(this.dataService.apiEndpoint + '/deleteBooth/' + boothID)
-              .subscribe({
-                  next: () => {
-                      Swal.fire('ลบสำเร็จ!', 'บูธถูกลบเรียบร้อยแล้ว.', 'success');
-                      this.getAllBooths();
-                  },
-                  error: (error) => {
-                      Swal.fire('ลบไม่สำเร็จ!', 'เกิดข้อผิดพลาดในการลบบูธ.', 'error');
-                  }
-              });
+        this.http.delete(this.dataService.apiEndpoint + '/deleteBooth/' + boothID)
+          .subscribe({
+            next: () => {
+              Swal.fire('ลบสำเร็จ!', 'บูธถูกลบเรียบร้อยแล้ว.', 'success');
+              this.getAllBooths();
+            },
+            error: (error) => {
+              Swal.fire('ลบไม่สำเร็จ!', 'เกิดข้อผิดพลาดในการลบบูธ.', 'error');
+            }
+          });
       }
-  });
-}
-
-
-  editBooth(booth: Booth) {
-    this.eBooth = { ...booth }; // คัดลอกข้อมูลของบูธที่เลือก
+    });
   }
 
-  cancelEdit() {
-    this.resetBoothForm();
+  editBooth(booth: Booth) {
+    this.eBooth = { ...booth };
   }
 
   resetBoothForm() {
-    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '',workID: '' };
+    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '', workID: '' };
   }
 }

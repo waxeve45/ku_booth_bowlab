@@ -199,3 +199,24 @@ button[type="button"]:hover {
     background-color: #e0e0e0;  /* เปลี่ยนสีพื้นหลังเมื่อ hover */
     color: #000;  /* เปลี่ยนสีตัวอักษรเมื่อ hover */
 }
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pagination-controls button {
+  background-color: #009c98;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -5,6 +5,7 @@
     <table>
         <thead>
             <tr>
+                <th>ลำดับ</th>
                 <th>ชื่อ-นามสกุล</th>
                 <th>เบอร์โทร</th>
                 <th>อีเมล</th>
@@ -12,8 +13,9 @@
         </thead>
    
         <tbody>
-            <ng-container *ngFor="let User of user">
+            <ng-container *ngFor="let User of user; let index = index">
             <tr>
+                <td>{{ index + 1 }}</td>
                 <td>{{User.prefix}}{{User.fname}} {{User.lname}}</td>
                 <td>{{User.phone}}</td>
                 <td>{{User.email}}</td>

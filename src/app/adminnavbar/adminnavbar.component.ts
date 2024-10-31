@@ -11,11 +11,13 @@ import { DataService } from '../../data.service';
   templateUrl: './adminnavbar.component.html',
   styleUrl: './adminnavbar.component.scss'
 })
+
 export class AdminnavbarComponent {
   email: string = '';
   prefix: string = '';
   fname: string = '';
   lname: string = '';
+  role: number = 0;
 
   constructor(
     private http: HttpClient,
@@ -31,6 +33,7 @@ export class AdminnavbarComponent {
       this.fname = user.fname;
       this.lname = user.lname;
       this.prefix = user.prefix;
+      this.role = user.role;
       console.log(user);
     }
   }
@@ -42,6 +45,4 @@ export class AdminnavbarComponent {
       window.location.reload();
     });
   }
-
-
 }

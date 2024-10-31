@@ -1,58 +1,65 @@
 <div class="wrapper">
-  <div class="cards-container">
+    <div *ngIf="boothItems.length === 0" class="no-booking-message">
+      คุณยังไม่ได้ทำการจอง
+    </div>
+    <div *ngIf="boothItems.length > 0" class="cards-container">
       <table class="booking-table">
-          <thead>
-              <tr>
-                  <th>ลำดับที่</th>
-                  <th>รูปบูธ</th>
-                  <th>ของที่ขาย</th>
-                  <th>โซน</th>
-                  <th>วันที่จอง</th>
-                  <th>วันที่จ่ายเงิน</th>
-                  <th>ราคารวม</th>
-                  <th>สถานะ</th>
-                  <th>การจัดการ</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let item of boothItems; let index = index">
-                  <td>{{ index + 1 }}</td>
-                  <td  class="table-image"> <ng-container *ngFor="let booth of item.boothDetails" ><img src="../../assets/booth.png" alt="Booth" />{{ booth.boothName }} - ราคา {{ booth.boothPrice }} บาท </ng-container>
-                      
-                  </td>
-                  <td>
-                      <ul>
-                          <li *ngFor="let booth of item.boothDetails">
-                              {{ booth.boothName }} 
-                          </li>
-                      </ul>
-                  </td>
-                  <td>{{ item.zoneName }}</td>
-                  <td>{{ item.reservationDate }}</td>
-                  <td>{{ item.ReservationStatus === "paid" ? item.reservationDate : "-" }}</td>
-                  <td>{{ item.totalPrice }} บาท</td>
-                  <td class="status">
-                      {{ item.ReservationStatus === "paid" ? "ชำระเงินแล้ว" : "ยังไม่ชำระเงิน" }}
-                  </td>
-                  <td class="buttons">
-                    <div class="button-wrapper">
-                        <div class="buttons">
-                            <ng-container *ngIf="messageNotPayment === 'ชำระเงินได้'">
-                              <button class="submit-btn" routerLink="/reservation">
-                                <i class="fa fa-credit-card"></i> ทำการชำระเงิน
-                              </button>
-                            </ng-container>
-                            <ng-container *ngIf="messageNotPayment === 'ชำระเงินไม่ได้'">
-                              <i class="fa fa-credit-card"></i> ไม่สามารถชำระเงินได้
-                            </ng-container>
-                        </div>  
-                        <button class="cancel-btn">
-                            <i class="fa fa-times-circle"></i> ยกเลิกการจอง
-                        </button>
-                    </div>
-                </td>
-              </tr>
-          </tbody>
+        <thead>
+          <tr>
+            <th>ลำดับที่</th>
+            <th>รูปบูธ</th>
+            <th>ของที่ขาย</th>
+            <th>โซน</th>
+            <th>วันที่จอง</th>
+            <th>วันที่จ่ายเงิน</th>
+            <th>ราคารวม</th>
+            <th>สถานะ</th>
+            <th>การจัดการ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of boothItems; let index = index">
+            <td>{{ index + 1 }}</td>
+            <td class="table-image">
+              <ng-container *ngFor="let booth of item.boothDetails">
+                <img src="../../assets/booth.png" alt="Booth" />
+                {{ booth.boothName }} - ราคา {{ booth.boothPrice }} บาท
+              </ng-container>
+            </td>
+            <td>
+              <ul>
+                <li *ngFor="let booth of item.boothDetails">
+                  {{ booth.boothName }}
+                </li>
+              </ul>
+            </td>
+            <td>{{ item.zoneName }}</td>
+            <td>{{ item.reservationDate }}</td>
+            <td>{{ item.ReservationStatus === "paid" ? item.reservationDate : "-" }}</td>
+            <td>{{ item.totalPrice }} บาท</td>
+            <td class="status">
+              {{ item.ReservationStatus === "paid" ? "ชำระเงินแล้ว" : "ยังไม่ชำระเงิน" }}
+            </td>
+            <td class="buttons">
+              <div class="button-wrapper">
+                <div class="buttons">
+                  <ng-container *ngIf="messageNotPayment === 'ชำระเงินได้'">
+                    <button class="submit-btn" routerLink="/reservation">
+                      <i class="fa fa-credit-card"></i> ทำการชำระเงิน
+                    </button>
+                  </ng-container>
+                  <ng-container *ngIf="messageNotPayment === 'ชำระเงินไม่ได้'">
+                    <i class="fa fa-credit-card"></i> ไม่สามารถชำระเงินได้
+                  </ng-container>
+                </div>
+                <button class="cancel-btn">
+                  <i class="fa fa-times-circle"></i> ยกเลิกการจอง
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </div>
   </div>
-</div>
+  
