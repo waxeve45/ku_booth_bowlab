@@ -1,5 +1,8 @@
 <div class="container">
-  <h1>บูธต่างๆ</h1>
+  <ng-container *ngFor="let zone of uniqueZones()">
+    <h1>{{ zone }}</h1>
+  </ng-container>
+
   <div class="reservation-rules">
     <p>❗<strong>ข้อจำกัด:</strong> 1 ท่านจองได้เพียง 4 บูธเท่านั้น</p>
   </div>
@@ -7,15 +10,14 @@
     <section class="zone-list">
       <ng-container *ngFor="let booth of booth">
         <div class="zone-card" [class.disabled]="booth.boothStatus === 'จองแล้ว'">
-          <img src="../../assets/theater.png" alt="Zone A Image" class="zone-image">
+          <img src="../../assets/booth.png" alt="Zone A Image" class="zone-image">
           <div class="zone-info">
-            
             <div class="zone-detail">
               <h3>{{ booth.boothName }}</h3>
               <p>ขนาด: <span>{{ booth.boothSize }} เมตร</span></p>
               <p>ราคา: <span>{{ booth.boothPrice }}</span></p>
               <p>สถานะ: <span>{{ booth.boothStatus }}</span></p>
-            </div>       
+            </div>
           </div>
 
           <div class="checkbox-wrapper-31">
@@ -30,15 +32,11 @@
               <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
             </svg>
           </div>
-
-          <!-- Unavailability Message -->
-          <!-- <div *ngIf="booth.boothStatus === 'อยู่ระหว่างตรวจสอบ'" class="unavailable-message">
-            ไม่สามารถจองบูธนี้ได้เนื่องจากถูกจองแล้ว
-          </div> -->
         </div>
       </ng-container>
     </section>
-  </main> 
+  </main>
+
   <ng-container *ngIf="checkReserv.count >= 4">
     <div class="floating-limit-message">
       <p>⚠️ ไม่สามารถจองบูธเพิ่มได้</p>

@@ -9,6 +9,7 @@ export interface Zone {
   zoneName: string;
   Number_of_booths: string;
   workID: string;
+  products_sold:    string;
 }
 
 

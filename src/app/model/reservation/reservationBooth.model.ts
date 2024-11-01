@@ -13,8 +13,14 @@ export interface ReservationBooth {
     reservationID: number;
     work_date_Start: string;
     totalPrice: any;
+    Product:       Product[];
   }
-  
+
+  export interface Product {
+    Product: string;
+}
+
+
   export interface BoothDetail {
     boothName: string;
     boothPrice: number;
@@ -22,11 +28,27 @@ export interface ReservationBooth {
   
   // Converts JSON strings to/from your types
   export class Convert {
-    public static toReservationBooth(json: string): ReservationBooth[] {
-      return JSON.parse(json);
+    public static toReservationbooth(json: string): ReservationBooth {
+        return JSON.parse(json);
     }
-  
-    public static reservationBoothToJson(value: ReservationBooth[]): string {
-      return JSON.stringify(value);
+
+    public static reservationboothToJson(value: ReservationBooth): string {
+        return JSON.stringify(value);
     }
-  }
+
+    public static toProduct(json: string): Product {
+        return JSON.parse(json);
+    }
+
+    public static productToJson(value: Product): string {
+        return JSON.stringify(value);
+    }
+
+    public static toBoothDetail(json: string): BoothDetail {
+        return JSON.parse(json);
+    }
+
+    public static boothDetailToJson(value: BoothDetail): string {
+        return JSON.stringify(value);
+    }
+}

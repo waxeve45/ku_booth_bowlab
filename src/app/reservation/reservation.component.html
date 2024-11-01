@@ -1,8 +1,7 @@
 <div class="container">
     <div class="content-wrapper">
-        <h2 class="wordbooth" >จัดการบูธ</h2>
+        <h2 class="wordbooth">จัดการบูธ</h2>
         <table class="booth-table">
-            
             <thead>
                 <tr>
                     <th>ลำดับ</th>
@@ -13,9 +12,9 @@
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor="let booth of selectedBooths">
+                <ng-container *ngFor="let booth of selectedBooths; let i = index">
                     <tr>
-                        <td data-label="ลำดับ">{{cout()}}</td>
+                        <td data-label="ลำดับ">{{ i + 1 }}</td>
                         <td data-label="รูปภาพ"><img src="../../assets/plant.png" alt="Booth Image" class="booth-image" /></td>
                         <td data-label="บูธหมายเลข">{{ booth.boothID }}</td>
                         <td data-label="ราคา">{{ booth.boothPrice }} บาท</td>
@@ -27,29 +26,28 @@
     </div>
 
     <div class="payment-section">
-        <h3>ชื่อ: แขก นามสกุล แขก</h3>
-        <p>กรุณาชำระเงิน <strong></strong></p>
+        <h3>ชื่อ: {{prefix}}{{ fname }} {{ lname }}</h3>
+        <p>กรุณาชำระเงิน</p>
         <div class="qr-container">
             <img src="../../assets/qrcode.png" alt="QR Code" />
         </div>
-        <button class="upload-btn">บันทึกสลิปการโอน</button>
+        <button class="upload-btn" [disabled]="!payment_slip">บันทึกสลิปการโอน</button>
         <p class="payment-info">
-            สแกน QR code เพื่อชำระเงินเข้าบัญชี<br />
+            สแกน QR code เพื่อชำระเงิน<br />
             <strong>มหาวิทยาลัยเกษตรศาสตร์ สกลนคร</strong>
         </p>
-        <p class="total-amount">ราคารวมทั้งหมด: <strong>{{coutPrice()}} บาท</strong></p>
+        <p class="total-amount">ราคารวมทั้งหมด: <strong>{{ coutPrice() }} บาท</strong></p>
         <div class="upload-slip">
             <label for="file-upload" class="custom-file-upload">เลือกไฟล์</label>
-            <input id="file-upload" type="file" [(ngModel)]="payment_slip"/>
-            
+            <input id="file-upload" type="file" (change)="onFileSelected($event)" />
         </div>
         <div class="input-about">
             <ng-container *ngFor="let booth of selectedBooths; let i = index">
-            <label for="about">สิ่งจะที่ขายในบูธ:{{booth.boothName}}</label>
-            <input type="text" id="name_by_{{ i }}" [(ngModel)]="boothItems[i]" placeholder= "กรอกสิ่งที่จะขาย" >
-        </ng-container>
+                <label for="about">สิ่งที่จะขายในบูธ: {{ booth.boothName }}</label>
+                <input type="text" id="name_by_{{ i }}" [(ngModel)]="boothItems[i]" placeholder="กรอกสิ่งที่จะขาย">
+            </ng-container>
         </div>
         <button class="confirm-btn" (click)="reserveBooth()">ทำการจอง</button>
-        <button class="cancle-btn" routerLink="/booth">ยกเลิกการจอง</button>
+        <button class="cancel-btn" routerLink="/">ยกเลิกการจอง</button>
     </div>
 </div>

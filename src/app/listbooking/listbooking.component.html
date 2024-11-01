@@ -26,13 +26,17 @@
                 {{ booth.boothName }} - ราคา {{ booth.boothPrice }} บาท
               </ng-container>
             </td>
+            
             <td>
               <ul>
-                <li *ngFor="let booth of item.boothDetails">
-                  {{ booth.boothName }}
+                <ng-container *ngFor="let product of item.Product">
+                <li>
+                   {{product.Product}}
                 </li>
+              </ng-container>
               </ul>
             </td>
+       
             <td>{{ item.zoneName }}</td>
             <td>{{ item.reservationDate }}</td>
             <td>{{ item.ReservationStatus === "paid" ? item.reservationDate : "-" }}</td>

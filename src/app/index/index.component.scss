@@ -87,9 +87,9 @@ body {
 .zone-image {
     width: 100px;
     height: 100px;
-    margin-bottom: -20px;
-    border-radius: 50%;
-    background-color: #fff;
+    margin-bottom: -10px;
+    border-radius: 25%;
+    // background-color: #fff;
     object-fit: cover;
     transition: transform 0.3s ease;
 }

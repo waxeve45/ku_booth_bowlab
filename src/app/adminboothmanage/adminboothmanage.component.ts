@@ -29,6 +29,7 @@ export class AdminboothmanageComponent implements OnInit {
     boothPrice: '',
     boothStatus: '',
     workID: '',
+    zoneName: '',
   };
 
   constructor(
@@ -138,6 +139,6 @@ export class AdminboothmanageComponent implements OnInit {
   }
 
   resetBoothForm() {
-    this.eBooth = { boothID: '', zoneID: '', boothName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '', workID: '' };
+    this.eBooth = { boothID: '', zoneID: '', boothName: '',zoneName: '', boothSize: '', products_sold: '', boothPrice: '', boothStatus: '', workID: '' };
   }
 }

@@ -109,4 +109,10 @@ export class ZoneAComponent implements OnInit {
       state: { selectedBooths: this.selectedBoothList },
     });
   }
+
+  uniqueZones(): string[] {
+    const zoneNames = this.booth.map(b => b.zoneName);
+    return [...new Set(zoneNames)]; 
+  }
+  
 }

@@ -13,6 +13,7 @@ export interface Booth {
     boothSize:   string;
     zoneID:      string;
     workID:      string;
+    zoneName:    string;
 }
 
 // Converts JSON strings to/from your types

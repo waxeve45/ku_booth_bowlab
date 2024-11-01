@@ -27,7 +27,7 @@ export class AdminzonemanageComponent implements OnInit {
     private router: Router,
   ) {
     // กำหนดค่าเริ่มต้นสำหรับ newZone ใน constructor
-    this.newZone = { zoneID: '', zoneName: '', Number_of_booths: '', workID: '' };
+    this.newZone = {products_sold: '', zoneID: '', zoneName: '', Number_of_booths: '', workID: '' };
   }
 
   ngOnInit() {
@@ -147,6 +147,6 @@ export class AdminzonemanageComponent implements OnInit {
 
   // ฟังก์ชันสำหรับรีเซ็ตข้อมูลโซนใหม่
   resetNewZone() {
-    this.newZone = { zoneID: '', zoneName: '', Number_of_booths: '', workID: '' };
+    this.newZone = {products_sold: '', zoneID: '', zoneName: '', Number_of_booths: '', workID: '' };
   }
 }
