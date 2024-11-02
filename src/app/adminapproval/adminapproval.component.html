@@ -8,21 +8,25 @@
                 <th>ชื่อสมาชิก</th>
                 <th>ชื่อโซน</th>
                 <th>รหัสบูธ</th>
-                <th>สถานะการชำระเงิน</th>
+                <th>สถานะการจอง</th>
                 <th>อนุมัติ/ปฏิเสธ</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="status-pending">
-                <td>สมชาย ใจดี</td>
-                <td>โซน A</td>
-                <td>B001</td>
-                <td>รอตรวจสอบ</td>
+            <ng-container *ngFor="let status of statusreser">
+                <tr class="status-pending">
+                <td>{{status.prefix}}{{status.fname}} {{status.lname}}</td>
+            
+                <td>{{status.zoneName}}</td>
+                <td>{{status.boothName}}</td>
+                <td>{{status.ReservationStatus}}</td>
                 <td>
-                    <button class="approve-btn">อนุมัติ</button>
-                    <button class="reject-btn">ปฏิเสธ</button>
+                    <button (click)="approve(status.reservationID)" class="approve-btn">อนุมัติ</button>
                 </td>
             </tr>
+        </ng-container>
+
+            
             <!-- รายการการจองเพิ่มเติม -->
         </tbody>
     </table>

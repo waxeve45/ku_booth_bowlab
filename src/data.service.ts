@@ -12,11 +12,8 @@ export class DataService {
   private userData:any;
   
 
-  apiEndpoint = "http://localhost/api_booth_csc";
-
-    // getUserData(){
-    // return this.userData;
-    // }
-
+  // apiEndpoint = "http://localhost/api_booth_csc";
+  apiEndpoint = "https://wag3.bowlab.net/api_booth_csc";
+  
 }
 

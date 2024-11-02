@@ -1,39 +1,42 @@
-// To parse this data:
-//
-//   import { Convert } from "./file";
-//
-//   const reservationBooth = Convert.toReservationBooth(json);
-
 export interface ReservationBooth {
     zoneName: string;
     boothDetails: BoothDetail[];
     ReservationStatus: string;
-    reservationDate: string;
+    reservationDate: Date;  // Change to Date type
     fullDate: string;
     reservationID: number;
     work_date_Start: string;
     totalPrice: any;
-    Product:       Product[];
-  }
+    Product: Product[];
+    payment_at: Date;  // Change to Date type
+}
 
-  export interface Product {
+export interface Product {
     Product: string;
 }
 
-
-  export interface BoothDetail {
+export interface BoothDetail {
     boothName: string;
     boothPrice: number;
-  }
-  
-  // Converts JSON strings to/from your types
-  export class Convert {
-    public static toReservationbooth(json: string): ReservationBooth {
-        return JSON.parse(json);
+}
+
+// Converts JSON strings to/from your types
+export class Convert {
+    public static toReservationBooth(json: string): ReservationBooth {
+        const obj = JSON.parse(json);
+        return {
+            ...obj,
+            reservationDate: new Date(obj.reservationDate),  // Convert to Date
+            payment_at: new Date(obj.payment_at)             // Convert to Date
+        };
     }
 
-    public static reservationboothToJson(value: ReservationBooth): string {
-        return JSON.stringify(value);
+    public static reservationBoothToJson(value: ReservationBooth): string {
+        return JSON.stringify({
+            ...value,
+            reservationDate: value.reservationDate.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' }),  // Format to 'day month year' in Thai
+            payment_at: value.payment_at.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' })  // Format to 'day month year' in Thai
+        });
     }
 
     public static toProduct(json: string): Product {

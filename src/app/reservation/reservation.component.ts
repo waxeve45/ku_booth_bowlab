@@ -1,32 +1,39 @@
 // import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
+// import {
+//   ActivatedRoute,
+//   Router,
+//   RouterLink,
+//   RouterModule,
+// } from '@angular/router';
+// import { Booth } from '../model/boothmodel/booth.model';
 // import { DataService } from '../../data.service';
 // import { HttpClient, HttpClientModule } from '@angular/common/http';
-// import Swal from 'sweetalert2';
 // import { CommonModule } from '@angular/common';
 // import { FormsModule } from '@angular/forms';
+// import Swal from 'sweetalert2';
 
 // @Component({
 //   selector: 'app-reservation',
 //   standalone: true,
 //   imports: [
-//     FormsModule, 
 //     RouterLink,
 //     RouterModule,
 //     HttpClientModule,
 //     CommonModule,
+//     FormsModule,
 //   ],
 //   templateUrl: './reservation.component.html',
 //   styleUrls: ['./reservation.component.scss'],
 // })
 // export class ReservationComponent implements OnInit {
 //   selectedBooths: any[] = [];
+//   oders = [{ id: 1 }];
+//   bootID: any;
+//   userID: any;
 //   boothItems: string[] = [];
 //   payment_slip: string = '';
 //   fname: string = '';
 //   lname: string = '';
-//   prefix: string = '';
-//   userID: any;
 
 //   constructor(
 //     private dataService: DataService,
@@ -38,17 +45,19 @@
 //   ngOnInit() {
 //     const navigation = history.state;
 //     this.selectedBooths = navigation.selectedBooths || [];
-//     console.log('Booths selected:', this.selectedBooths);
-    
+//     console.log('Booths selected: ', this.selectedBooths);
 //     const userData = sessionStorage.getItem('userData');
 //     if (userData) {
 //       const user = JSON.parse(userData);
 //       this.userID = user.user_id;
 //       this.fname = user.fname;
 //       this.lname = user.lname;
-//       this.prefix = user.prefix;
 //     }
 //     this.boothItems = new Array(this.selectedBooths.length).fill('');
+//   }
+
+//   cout(): number {
+//     return this.oders.reduce((total, order) => total + order.id, 0);
 //   }
 
 //   coutPrice(): number {
@@ -57,24 +66,16 @@
 //       .reduce((total, boothPrice) => total + boothPrice, 0);
 //   }
 
-//   onFileSelected(event: Event) {
-//     const file = (event.target as HTMLInputElement).files?.[0];
-//     if (file) {
-//       this.payment_slip = file.name; // หรือสามารถใช้การอัปโหลดจริง
-//     }
-//   }
-
 //   reserveBooth() {
 //     if (this.boothItems.some((item) => !item)) {
 //       Swal.fire({
-//         title: 'ข้อมูลไม่ครบ',
-//         text: 'กรุณาระบุสิ่งที่จะขายในบูธทั้งหมด',
 //         icon: 'warning',
-//         confirmButtonText: 'ตกลง'
+//         title: 'ไม่สามารถจองได้',
+//         text: 'กรุณาระบุของที่จะขาย',
 //       });
 //       return;
 //     }
-
+  
 //     const reserData = this.selectedBooths.map((booth, index) => ({
 //       boothID: booth.boothID,
 //       userID: this.userID,
@@ -83,43 +84,33 @@
 //       ReservationStatus: 'จอง',
 //       payment_slip: this.payment_slip || null,
 //     }));
-
-//     Swal.fire({
-//       title: 'ยืนยันการจองบูธ',
-//       text: 'คุณต้องการจองบูธนี้หรือไม่?',
-//       icon: 'warning',
-//       showCancelButton: true,
-//       confirmButtonText: 'ใช่, จองเลย!',
-//       cancelButtonText: 'ยกเลิก'
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         this.http.post(this.dataService.apiEndpoint + '/AddReserva', reserData).subscribe((response) => {
-//           console.log('ข้อมูลการจอง:', reserData);
-//           Swal.fire({
-//             title: 'จองเรียบร้อย',
-//             text: 'กดตกลงเพื่อไปยังรายการจอง',
-//             icon: 'success',
-//             confirmButtonText: 'ตกลง'
-//           }).then((result) => {
-//             if (result.isConfirmed) {
-//               this.router.navigate(['listbooking']);
-//             }
-//           });
-//         }, (error) => {
-//           console.error('เกิดข้อผิดพลาด:', error);
-//           Swal.fire({
-//             title: 'เกิดข้อผิดพลาด',
-//             text: 'มีข้อผิดพลาดในการจอง',
-//             icon: 'error',
-//             confirmButtonText: 'ตกลง'
-//           });
+  
+//     this.http.post(this.dataService.apiEndpoint + '/AddReserva1', reserData).subscribe(
+//       (response) => {
+//         console.log('ข้อมูลการจอง:', reserData);
+//         Swal.fire({
+//           icon: 'success',
+//           title: 'จองเรียบร้อย',
+//           text: 'ข้อมูลการจองของคุณถูกบันทึกแล้ว',
+//         }).then(() => {
+//           this.router.navigate(['listbooking']);
 //         });
-//       } else {
-//         console.log('การจองถูกยกเลิก');
+//       },
+//       (error) => {
+//         console.error('เกิดข้อผิดพลาด:', error);
+//         Swal.fire({
+//           icon: 'error',
+//           title: 'เกิดข้อผิดพลาด',
+//           text: 'เกิดข้อผิดพลาดในการจอง',
+//         }).then(() => {
+//           this.router.navigate(['listbooking']);
+//         });
 //       }
-//     });
+//     );
 //   }
+  
 // }
+
 import { Component, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
@@ -127,11 +118,12 @@ import {
   RouterLink,
   RouterModule,
 } from '@angular/router';
-import { Booth } from '../model/boothmodel/booth.model';
 import { DataService } from '../../data.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReservationBoothForPayment } from '../model/reservation/reservation-for-payment.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reservation',
@@ -148,12 +140,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class ReservationComponent implements OnInit {
   selectedBooths: any[] = [];
-  orders = [{ id: 1 }];
   boothItems: string[] = [];
   payment_slip: File | null = null;
   fname: string = '';
   lname: string = '';
   userID: any;
+  reservationIDs: string[] = [];
+  reservations: ReservationBoothForPayment[] = [];
+  totalPrice: number = 0;
 
   constructor(
     private dataService: DataService,
@@ -163,6 +157,15 @@ export class ReservationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe((params: any) => {
+      this.reservationIDs = params.getAll('reservationIDs'); // This will return an array
+      console.log('log param:', this.reservationIDs);
+
+      if (this.reservationIDs.length > 0) {
+        this.getAllReservation();
+      }
+    });
+
     const navigation = history.state;
     this.selectedBooths = navigation.selectedBooths || [];
     console.log('Booths selected: ', this.selectedBooths);
@@ -177,8 +180,28 @@ export class ReservationComponent implements OnInit {
     this.boothItems = new Array(this.selectedBooths.length).fill('');
   }
 
-  cout(): number {
-    return this.orders.reduce((total, order) => total + order.id, 0);
+  getAllReservation() {
+    const ids = this.reservationIDs.join(','); // Join IDs into a comma-separated string
+    this.http
+      .get<ReservationBoothForPayment[]>(
+        `${this.dataService.apiEndpoint}/showReservation/${ids}`
+      )
+      .subscribe(
+        (data) => {
+          this.reservations = data; // Assign the response data to reservations
+          console.log('Reservations:', this.reservations);
+          this.totalPrice = this.coutPriceForGetReservation();
+        },
+        (error) => {
+          console.error('Error fetching reservations:', error);
+        }
+      );
+  }
+
+  coutPriceForGetReservation(): number {
+    return this.reservations
+      .map((reservation) => Number(reservation.boothPrice))
+      .reduce((total, boothPrice) => total + boothPrice, 0);
   }
 
   coutPrice(): number {
@@ -187,19 +210,20 @@ export class ReservationComponent implements OnInit {
       .reduce((total, boothPrice) => total + boothPrice, 0);
   }
 
-  // Handle file input change
   onFileSelected(event: any) {
     this.payment_slip = event.target.files[0];
   }
 
   reserveAll() {
     if (this.boothItems.some((item) => !item)) {
-      console.log('ไม่สามารถจองได้ กรุณาระบุสินค้าที่ต้องการขาย');
+      console.error('Cannot reserve: Please specify products for all booths.');
+      alert('ไม่สามารถจองได้ กรุณาระบุสินค้าที่ต้องการขาย');
       return;
     }
 
     if (this.selectedBooths.length === 0) {
-      console.log('ไม่มีบูธที่เลือก');
+      console.error('No booths selected');
+      alert('ไม่มีบูธที่เลือก');
       return;
     }
 
@@ -222,18 +246,26 @@ export class ReservationComponent implements OnInit {
       formData.append('payment_slip', this.payment_slip);
     }
 
-    console.log(this.payment_slip);
-    console.log(formData);
+    console.log('Logging FormData contents:');
+    formData.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
 
     this.http
       .post(this.dataService.apiEndpoint + '/AddReserva', formData)
       .subscribe(
         () => {
-          console.log('ข้อมูลการจองทั้งหมดถูกส่งไป:', formData);
-          alert('จองบูธทั้งหมดเรียบร้อยแล้ว!');
+          console.log('Reservation data successfully sent:', formData);
+
+          Swal.fire({
+            title: 'จองบูธสำเร็จ',
+            text: 'คุณได้ทำการจองบูธสำเร็จ',
+            icon: 'success',
+          });
+          this.router.navigate(['listbooking']);
         },
         (error) => {
-          console.error('เกิดข้อผิดพลาดในการจอง:', error);
+          console.error('Error during reservation:', error);
           alert('เกิดข้อผิดพลาดในการจองบูธ');
         }
       );

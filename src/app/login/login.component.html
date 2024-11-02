@@ -1,13 +1,13 @@
 <div class="container">
     <div class="login-form">
-        <h1>Login</h1>
-        <label for="email">Email</label>
+        <h1>เข้าสู่ระบบ</h1>
+        <label for="email">อีเมล</label>
         <input type="email" name="email" id="email" placeholder="Please enter your email" required #email>
          
-        <label for="password">Password</label>
+        <label for="password">รหัสผ่าน</label>
         <input type="password" name="password" id="password" placeholder="Please enter your password" required  #password>
 
-        <button (click)="login(email.value, password.value)"  class="btn-login">Login</button>
-        <p class="register-link"><a routerLink="/register">Register</a></p>
+        <button (click)="login(email.value, password.value)"  class="btn-login">เข้าสู่ระบบ</button>
+        <p class="register-link"><a routerLink="/register">สมัครสมาชิก</a></p>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { User } from '../model/usermodel/user.model';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  userId: string = "";
+  userId: string = '';
   user: User[] = [];
 
   constructor(
@@ -34,11 +35,13 @@ export class EditProfileComponent implements OnInit {
   }
 
   getMyuser() {
-    this.http.get(this.dataService.apiEndpoint + '/showuser/' + this.userId).subscribe((response: any) => {
-      console.log('get inform success');
-      this.user = response;
-      console.log(this.user);
-    });
+    this.http
+      .get(this.dataService.apiEndpoint + '/showuser/' + this.userId)
+      .subscribe((response: any) => {
+        console.log('User information retrieved successfully');
+        this.user = response;
+        console.log(this.user);
+      });
   }
 
   UpDateUser(prefix: any, fname: any, lname: any, phone: any, email: any) {
@@ -48,14 +51,53 @@ export class EditProfileComponent implements OnInit {
       lname: lname,
       phone: phone,
       email: email,
-      user_id: this.userId
+      user_id: this.userId,
     };
     console.log(UserData);
 
-    this.http.post(this.dataService.apiEndpoint + '/UpdateUser', UserData).subscribe((response: any) => {
-      console.log('update user success');
-      sessionStorage.setItem('userData', JSON.stringify(response.updateUser));
-      location.reload();
-    });
+// Confirm the update action
+Swal.fire({
+  title: 'ยืนยันการอัปเดต',
+  text: 'คุณแน่ใจหรือไม่ว่าต้องการอัปเดตข้อมูลโปรไฟล์ของคุณ?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'ใช่, อัปเดตเลย!',
+  cancelButtonText: 'ยกเลิก',
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.http
+      .post(this.dataService.apiEndpoint + '/UpdateUser', UserData)
+      .subscribe(
+        (response: any) => {
+          console.log('User updated successfully');
+          sessionStorage.setItem('userData', JSON.stringify(response.updateUser));
+          
+          // Success alert
+          Swal.fire({
+            title: 'อัปเดตเรียบร้อย!',
+            text: 'โปรไฟล์ของคุณได้รับการอัปเดตเรียบร้อยแล้ว',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+          }).then(() => {
+            this.router.navigate(['EditProfile']);
+          });
+        },
+        (error) => {
+          console.error('Update failed:', error);
+          
+          // Error alert
+          Swal.fire({
+            title: 'เกิดข้อผิดพลาด',
+            text: 'มีข้อผิดพลาดในการอัปเดตโปรไฟล์ของคุณ',
+            icon: 'error',
+            confirmButtonText: 'ตกลง',
+          });
+        }
+      );
+  } else {
+    console.log('Update canceled');
+  }
+});
+
   }
 }

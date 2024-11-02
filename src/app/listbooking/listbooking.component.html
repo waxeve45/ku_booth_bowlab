@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
     <div *ngIf="boothItems.length === 0" class="no-booking-message">
       คุณยังไม่ได้ทำการจอง
     </div>
@@ -65,5 +65,79 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </div> -->
   
+   <div class="wrapper">
+    <div *ngIf="boothItems.length === 0" class="no-booking-message">
+      คุณยังไม่ได้ทำการจอง
+    </div>
+    <div *ngIf="boothItems.length > 0" class="cards-container">
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>ลำดับที่</th>
+            <th>รูปบูธ</th>
+            <th>ของที่ขาย</th>
+            <th>โซน</th>
+            <th>วันที่จอง</th>
+            <th>วันที่จ่ายเงิน</th>
+            <th>ราคารวม</th>
+            <th>สถานะ</th>
+            <th>การจัดการ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of boothItems; let index = index">
+            <td style="text-align: center">{{ index + 1 }}</td>
+            <td class="table-image">
+              <ng-container *ngFor="let booth of item.boothDetails">
+                <img src="../../assets/booth.png" alt="Booth" />
+                {{ booth.boothName }} - ราคา {{ booth.boothPrice }} บาท
+              </ng-container>
+            </td>
+            <td>
+              <ul>
+                <ng-container *ngFor="let product of item.Product">
+                  <li>
+                    {{ product.Product }}
+                  </li>
+                </ng-container>
+              </ul>
+            </td>
+            <td>{{ item.zoneName }}</td>
+            <td>{{ item.reservationDate | date:'dd/M/yyyy' }}</td>
+            <td>
+              {{ item.ReservationStatus === "ชำระเงิน" ? (item.payment_at | date:'dd/M/yyyy') : "-" }}
+            </td>
+            <td>{{ item.totalPrice }} บาท</td>
+            <td class="status">
+              {{ item.ReservationStatus }}
+            </td>
+            <td class="buttons">
+              <div class="button-wrapper">
+                <div class="buttons">
+                  <ng-container *ngIf="item.ReservationStatus === 'จอง'">
+                    <!-- <ng-container *ngIf="messageNotPayment === 'ชำระเงินได้'"> -->
+                      <button
+                        class="submit-btn"
+                        (click)="paymentForBooth(item.reservationID)">
+                        <i class="fa fa-credit-card"></i> ทำการชำระเงิน
+                      </button>
+                    </ng-container>
+
+                </div>
+                <ng-container *ngIf="item.ReservationStatus != 'ยกเลิกการจอง'">
+                  <button
+                    class="cancel-btn"
+                    (click)="cancelAllReservations(item.reservationID)"
+                  >
+                    <i class="fa fa-times-circle"></i> ยกเลิกการจอง
+                  </button></ng-container
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

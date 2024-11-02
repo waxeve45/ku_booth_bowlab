@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { DataService } from '../../data.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { User } from '../model/usermodel/user.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editpassword',
@@ -12,9 +13,7 @@ import { User } from '../model/usermodel/user.model';
   templateUrl: './editpassword.component.html',
   styleUrls: ['./editpassword.component.scss']
 })
-export class EditpasswordComponent {
-
-  // userId: string = '';
+export class EditpasswordComponent implements OnInit {
   user: User[] = [];
   user_id: string = '';
   fname: string = '';
@@ -26,14 +25,36 @@ export class EditpasswordComponent {
     private route: ActivatedRoute
   ) {}
 
+  ngOnInit() {
+    const userData = sessionStorage.getItem('userData');
+    if (userData) {
+      const user = JSON.parse(userData);
+      this.fname = user.fname;
+      this.user_id = user.user_id;
+      console.log(user);
+    }
+    this.user_id = this.route.snapshot.paramMap.get('userId') || '';
+    console.log('Received userId:', this.user_id);
+  }
+
   updatePass(current_password: string, new_password: string, confirm_password: string) {
-    if (new_password !== confirm_password) {
-      console.log('รหัสผ่านไม่ตรงกัน');
+    if (!current_password || !new_password || !confirm_password) {
+      Swal.fire({
+        title: 'Missing Information',
+        text: 'Please fill in all password fields.',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
-    if (!current_password || !new_password || !confirm_password) {
-      console.log('กรุณากรอกรหัสผ่านทุกช่อง');
+    if (new_password !== confirm_password) {
+      Swal.fire({
+        title: 'Passwords Do Not Match',
+        text: 'The new password and confirmation do not match.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
@@ -41,37 +62,36 @@ export class EditpasswordComponent {
       user_id: this.user_id,
       current_password: current_password,
       new_password: new_password,
-      confirm_password: confirm_password
+      confirm_password: confirm_password,
     };
 
     console.log(passwordData);
 
-    this.http.post(this.dataService.apiEndpoint + '/Passwords', passwordData)
-      .subscribe({
-        next: (response: any) => {
-          console.log('เปลี่ยนรหัสเรียบร้อย');
+  this.http.post(this.dataService.apiEndpoint + '/Passwords', passwordData)
+    .subscribe({
+      next: (response: any) => {
+        console.log('Password updated successfully');
+        Swal.fire({
+          title: 'สำเร็จ',
+          text: 'รหัสผ่านของคุณได้รับการอัปเดตเรียบร้อยแล้ว!',
+          icon: 'success',
+          confirmButtonText: 'ตกลง',
+        }).then(() => {
           this.router.navigate(['/EditProfile']);
-        },
-        error: (error) => {
-          console.error('Error updating password:', error);
-        }
-      });
+        });
+      },
+      error: (error) => {
+        console.error('Error updating password:', error);
+        Swal.fire({
+          title: 'อัปเดตล้มเหลว',
+          text: 'เกิดข้อผิดพลาดในการอัปเดตรหัสผ่านของคุณ กรุณาลองใหม่อีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'ตกลง',
+        });
+      },
+    });
   }
-
-  // ngOnInit(): void {
-    ngOnInit(){
-      const userData = sessionStorage.getItem('userData');
-      if(userData){
-        const user = JSON.parse(userData);
-        this.fname = user.fname
-        this.user_id = user.user_id
-        console.log(user);
-      }
-    this.user_id = this.route.snapshot.paramMap.get('userId') || '';
-    console.log('Received userId:', this.user_id);
-  }
-    
-  }
+}
 
   // UpDateUser(prefix: any, fname: any, lname: any, phone: any, email: any) {
   //   const UserData = {
